@@ -1,0 +1,17 @@
+<h1>Courses List</h1>
+
+<ul>
+  {{#each courses}}
+  <li>Name: {{this.name}}</li>
+  <li>Code: {{this.code}}</li>
+  <li>Instructor: {{this.instructor.name}} {{this.instructor.lastName}}</li> 
+  <h4>List of students:</h4>
+    {{#each this.studentList}}
+    <ul>
+      <li>{{this.name}} {{this.lastName}}</li>
+    </ul>
+    {{/each}}
+     <h4>*******************************************************</h4>
+  {{/each}}
+ 
+</ul>

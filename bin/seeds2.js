@@ -15,21 +15,21 @@ const coursesArray = [
     name : 'History',
     code: 'ASH 2030',
     previewImage: '/images/history.jpg',
-    instructor:"5d69ddf2bc8cbf47bdb7a762",
+    instructor:'5d69ddf2bc8cbf47bdb7a762',
     studentList: ['5d69da609752fc477d711fd4','5d69da609752fc477d711fd3','5d69da609752fc477d711fd2'] 
   },
   { 
     name : 'Math',
     code: 'MAT 3033',
     previewImage: '/images/math.jpg',
-    instructor:"5d69ddf2bc8cbf47bdb7a764",
+    instructor:'5d69ddf2bc8cbf47bdb7a764',
     studentList: ['5d69da609752fc477d711fd2','5d69da609752fc477d711fd3']
   },
   { 
     name : 'Math',
     code: 'CGS 3095',
     previewImage: '/images/global.jpg',
-    instructor:"5d69ddf2bc8cbf47bdb7a763",
+    instructor:'5d69ddf2bc8cbf47bdb7a763',
     studentList: ['5d69da609752fc477d711fd4','5d69da609752fc477d711fd3'] 
   }
 ]

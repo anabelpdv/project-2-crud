@@ -2,6 +2,7 @@
 
 <ul>
   {{#each students}}
-  <li>{{this.name}}</li>
+  <a href="/student/profile/{{this.id}}"><li>{{this.name}}</li></a>
+
   {{/each}}
 </ul>

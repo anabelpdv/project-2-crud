@@ -1,0 +1,9 @@
+<h1>Student Profile => {{studentId}}</h1>
+
+{{#each courses}}
+<ul>
+  <li>{{this.name}}</li>
+  <li>{{this.code}}</li>
+  <li>{{this.instructor.name}} {{this.instructor.lastName}}</li>
+</ul>
+{{/each}}

@@ -1,0 +1,8 @@
+<h1>Instructors List</h1>
+
+<ul>
+  {{#each instructors}}
+
+  <a href="/instructor/profile/{{this.id}}"><li>{{this.name}} {{this.lastName}}</li></a>
+  {{/each}}
+</ul>
