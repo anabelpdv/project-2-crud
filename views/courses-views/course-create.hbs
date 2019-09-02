@@ -1,0 +1,35 @@
+<h1>Create Course</h1>
+
+<form action="/courses/create" method='post' enctype="multipart/form-data">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name">
+    <label for="code">Code</label>
+    <input type="text" name="code" id="code">
+    <label for="instroduction">Introduction</label>
+    <textarea id="introduction" name="introduction" rows="20" cols="100">
+      Course intro goes here.
+    </textarea>
+    <label for="startDate">Start date:</label>
+    <input type="date" name="startDate" id="startDate">
+    <label for="endDate">End date:</label>
+    <input type="date" name="endDate" id="endDate">
+    <label for="syllabus">Syllabus</label>
+    <input type="file" name="syllabus" id="syllabus">
+    <button type="submit">Save</button>
+</form>
+
+
+{{!-- 
+
+const courseSchema = new Schema({
+  name : String,
+  code: String,
+  introductuction: String,
+  startDate: Date,
+  endDate: Date,
+  syllabusName:String,
+  syllabusPath:String,
+  previewImage: String,
+  instructor: {type: Schema.Types.ObjectId, ref: 'Instructor' },
+  studentList: [{type:Schema.Types.ObjectId, ref:'Student'}]
+}); --}}
