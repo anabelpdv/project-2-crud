@@ -1,35 +1,41 @@
 <h1>Create Course</h1>
-
-<form action="/courses/create" method='post' enctype="multipart/form-data">
+<form  id="course-create" action="/courses/create" method='post' enctype="multipart/form-data">
     <label for="name">Name</label>
     <input type="text" name="name" id="name">
+
     <label for="code">Code</label>
     <input type="text" name="code" id="code">
+
     <label for="instroduction">Introduction</label>
-    <textarea id="introduction" name="introduction" rows="20" cols="100">
-      Course intro goes here.
+    <br> <textarea id="introduction" name="introduction" rows="15" cols="80">
     </textarea>
-    <label for="startDate">Start date:</label>
-    <input type="date" name="startDate" id="startDate">
-    <label for="endDate">End date:</label>
-    <input type="date" name="endDate" id="endDate">
-    <label for="syllabus">Syllabus</label>
-    <input type="file" name="syllabus" id="syllabus">
+
+    <br><label for="startDate">Start date:</label>
+    <br><input type="date" name="startDate" id="startDate">
+
+    <br><label for="endDate">End date:</label>
+    <br><input type="date" name="endDate" id="endDate">
+
+    <br><label for="startTime">Start time:</label>
+    <br><input type="time" name="startTime" id="startTime">
+
+    <br><label for="endTime">End time:</label>
+    <br><input type="time" name="endTime" id="endTime">
+
+    <br><label for="days">Days</label>
+    <br><div id="days"></div>
+
+    <br><label for="syllabus">Syllabus</label>
+    <br><input type="file" name="syllabus" id="syllabus">
+
+    <br> <label for="instructorList">Add Instructor</label>
+    <div id="instructorList"></div>
+
+    <br><label for="studentList">Add Students</label>
+    <div id="studentList">Anabel</div>
+    
     <button type="submit">Save</button>
 </form>
 
 
-{{!-- 
 
-const courseSchema = new Schema({
-  name : String,
-  code: String,
-  introductuction: String,
-  startDate: Date,
-  endDate: Date,
-  syllabusName:String,
-  syllabusPath:String,
-  previewImage: String,
-  instructor: {type: Schema.Types.ObjectId, ref: 'Instructor' },
-  studentList: [{type:Schema.Types.ObjectId, ref:'Student'}]
-}); --}}

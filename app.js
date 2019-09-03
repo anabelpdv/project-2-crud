@@ -56,6 +56,9 @@ app.use('/', require('./routes/index'));
 app.use('/',require('./routes/students-routes'))
 app.use('/',require('./routes/courses-routes'))
 app.use('/',require('./routes/instructors-routes'))
+app.use('/',require('./routes/students-api'))
+app.use('/',require('./routes/instructors-api'))
+app.use('/',require('./routes/courses-api'))
 
 
 module.exports = app;
