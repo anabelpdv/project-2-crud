@@ -14,21 +14,30 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+
+
   {{#if errorMessage}}
-    <div style="border: 1px solid red">
+    <div style="color: red; font-size:1.2em;">
         {{errorMessage}}
     </div>
     {{/if}}
     {{#if successMessage}}
-      <div style="border: 1px solid green">
+      <div style="color: green; font-size:1.2em;">
       {{successMessage}}
       </div>
     {{/if}}
-  <nav>
-  <a href="/instructors">Instructors list</a>
-  <a href="/students">Estudents list</a>
-  <a href="/courses">Courses list</a>
-  <a href="/courses/create">Create course</a>
+<nav>
+  {{#if currentUser}}
+  <h3>Hello, {{currentUser.username}}</h3>
+  <form action="/logout" method="POST">
+        <button>Logout</button>
+    </form>
+  {{/if}}
+<br><a href="/instructors">Instructors list</a>
+<br><a href="/students">Estudents list</a>
+<br> <a href="/courses">Courses list</a>
+<br> <a href="/courses/create">Create course</a>
+<br> <a href="/login">Login</a>
 </nav>
 
   {{{body}}}

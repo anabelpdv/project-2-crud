@@ -14,7 +14,7 @@ router.get('/courses', (req, res, next) => {
   
 })
 
-router.get('/courses/create', (req, res, next) => {
+router.get('/courses/create',(req, res, next) => {
   Student
         .find()
         .then(students => {
