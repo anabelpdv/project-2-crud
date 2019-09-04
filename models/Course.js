@@ -6,6 +6,7 @@ const courseSchema = new Schema({
   name : String,
   code: String,
   introduction: String,
+  term: {type: String, enum:['Spring','Fall','Summer']},
   startDate: String,
   endDate: String,
   startTime: String,

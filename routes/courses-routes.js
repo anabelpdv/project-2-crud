@@ -9,8 +9,18 @@ router.get('/courses', (req, res, next) => {
     .find()
     .populate('instructor')
     .populate('studentList')
-    .then(courses => res.render('courses-views/courses-preview.hbs', {courses}))
+    .then(courses => res.render('courses-views/courses-preview', {courses}))
     .catch(err => console.log("Error retrieving course", err))
+  
+})
+
+router.get('/course/details/:id', (req, res, next) => {
+
+  Course
+    .findById(req.params.id)
+    .populate('instructor')
+    .then(course => res.render('courses-views/course-details', {course}))
+    .catch(err => console.log("Error retrieving course information", err))
   
 })
 
@@ -25,11 +35,11 @@ router.get('/courses/create',(req, res, next) => {
 })
 
 router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) => {
-
   const newCourse = {
     name: req.body.name,
     code: req.body.code,
     introduction: req.body.introduction,
+    term: req.body.term,
     startDate: req.body.startDate,
     endDate:  req.body.endDate,
     startTime: req.body.startTime,

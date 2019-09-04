@@ -1,30 +1,15 @@
 <h1>Courses List</h1>
+<div class="container course-wrapper">
 {{#each courses}}
   <div class="card" style="width: 18rem;">
     <img src={{this.previewImage}} class="card-img-top" alt="preview-image">
     <div class="card-body">
-    <a href="#" class="">
+    <a href="/course/details/{{this.id}}" class="">
       <h5 class="card-title">{{this.code}}</h5>
       <p class="card-text">{{this.name}}</p>
-        <p>Start: {{this.startDate}}  Ends: {{this.endDate}}</p>  
-        <p>Time: {{this.startTime}} - {{this.endTime}}</p>
+        <p>{{this.term}}</p>  
       </a>
     </div>
   </div>
 {{/each}}
-{{!-- <ul>
-  {{#each courses}}
-  <h4>*******************************************************</h4>
-  <li>Name: {{this.name}}</li>
-  <li>Code: {{this.code}}</li>
-  <li>Instructor: {{this.instructor.name}} {{this.instructor.lastName}}</li> 
-  <h4>List of students:</h4>
-    {{#each this.studentList}}
-    <ul>
-      <li>{{this.name}} {{this.lastName}}</li>
-    </ul>
-    {{/each}}
-    <h4>*******************************************************</h4>
-  {{/each}}
-
-</ul> --}}
+</div>

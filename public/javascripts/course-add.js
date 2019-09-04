@@ -1,11 +1,16 @@
 
 $( document ).ready(function() {
 
-  const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']  
-
+  const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']; 
   weekDays.forEach(day => {
     $('#days').append(`<input type="checkbox" name="days" class="days" value=${day}> ${day} </input>`)
   })
+
+  const schoolTerms = ['Spring','Fall','Summer'];
+  schoolTerms.forEach(term =>{
+    $('#term').append(`<option value=${term}>${term}</option>`)
+  })
+
 
 axios.get('/api/students')
   .then(response => {

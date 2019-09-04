@@ -1,0 +1,24 @@
+<div class="container">
+    <h1>Course details</h1>
+    <h1>{{course.code}}</h1>
+    <h3>{{course.name}}</h3>
+    <h4>{{course.term}}</h4>
+    <p>Begin: {{course.startDate}}  End: {{course.endDate}}</p>
+    <p>Time: {{course.startTime}} - {{course.endTime}}</p>
+
+        {{#each course.days}} 
+        <span></span>{{ this }}</span>
+        {{/each}}
+
+    
+<p></p>
+    <h5>Instructor: {{course.instructor.name}} {{course.instructor.lastName}}</h5>
+    <p>{{course.introduction}}</p>
+    <h2>Course content</h2>
+    <ul>
+      <li><a href={{course.syllabusPath}}>Syllabus</a></li>
+      <li><a href="#">Sections</a></li>
+      <li><a href="#"> Study Material</a></li>
+    </ul>
+</div>
+
