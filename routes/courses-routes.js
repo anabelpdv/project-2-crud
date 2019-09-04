@@ -9,7 +9,7 @@ router.get('/courses', (req, res, next) => {
     .find()
     .populate('instructor')
     .populate('studentList')
-    .then(courses => res.render('courses-views/courses.hbs', {courses}))
+    .then(courses => res.render('courses-views/courses-preview.hbs', {courses}))
     .catch(err => console.log("Error retrieving course", err))
   
 })
@@ -25,24 +25,31 @@ router.get('/courses/create',(req, res, next) => {
 })
 
 router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) => {
-const newCourse = {
-  name: req.body.name,
-  code: req.body.code,
-  introduction: req.body.introduction,
-  startDate: req.body.startDate,
-  endDate:  req.body.endDate,
-  syllabusName : req.file.originalname,
-  syllabusPath: req.file.url,
-  previewImage: '/images/image.jpg',
-  instructor: req.body.instructo,
-  studentList: req.body.studentList,
-}
 
-Course
-      .create(newCourse)  
-      .then(course => console.log('Succes! new course created: ',course))
-      .catch(err => next(err));
-})
+  const newCourse = {
+    name: req.body.name,
+    code: req.body.code,
+    introduction: req.body.introduction,
+    startDate: req.body.startDate,
+    endDate:  req.body.endDate,
+    startTime: req.body.startTime,
+    endTime:  req.body.endTime,
+    days: req.body.days,
+    syllabusName : req.file.originalname,
+    syllabusPath: req.file.url,
+    previewImage: '/images/preview-0.jpg',
+    instructor: req.body.instructor,
+    studentList: req.body.studentList,
+  }
+
+  Course
+        .create(newCourse)  
+        .then(course => {
+          console.log('Succes! new course created: ',course)
+          res.redirect('/')
+        })
+        .catch(err => next(err));
+  })
 module.exports = router;
 
 

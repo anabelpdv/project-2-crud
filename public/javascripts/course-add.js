@@ -1,10 +1,10 @@
 
 $( document ).ready(function() {
 
-  const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY']  
+  const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']  
 
   weekDays.forEach(day => {
-    $('#days').append(`<input type="checkbox" value=${day} id="days"> ${day} </input>`)
+    $('#days').append(`<input type="checkbox" name="days" class="days" value=${day}> ${day} </input>`)
   })
 
 axios.get('/api/students')
@@ -15,7 +15,7 @@ axios.get('/api/students')
     }) 
   })
   .catch(err => console.log('Error retrieving students'))
-  let test;
+
 axios.get('/api/instructors')
     .then(response => {
       let instructors = response.data;
@@ -24,35 +24,5 @@ axios.get('/api/instructors')
       })  
     })
     .catch(err => console.log('Error retrieving instructor')) 
-
-$('#course-create').submit(function(e){
-  e.preventDefault()  
-  let courseName = $('#name').val();
-  let courseCode = $('#code').val();
-  const course = {
-    name: courseName,
-    code: courseCode,
-  }
-
- let formData = new FormData;
-  // formData.append('name', $('#name').val())
-  // formData.append('code',$('#code').val())
-  formData.append('file',document.getElementById('syllabus').files)
-
-  
-
-  console.log(formData)
-// let contentType = {
-//   headers : {
-//   "content-type": "multipart/form-data"
-//   }
-// }
-
-//   axios.post('/api/courses',formData,contentType)
-//         .then(console.log('Todo en talla')) 
-//         .catch(err=>{console.log('Tremendo error'. err)})
-
- })
-
 
 });

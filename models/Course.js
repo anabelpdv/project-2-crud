@@ -11,7 +11,7 @@ const courseSchema = new Schema({
   startTime: String,
   endTime: String,
   days:{type:[String],
-          enum:['MONDAY','TUESDAY','WEDNESDAY', 'THURSDAY', 'FRIDAY']
+          enum:['MONDAY','TUESDAY','WEDNESDAY', 'THURSDAY', 'FRIDAY','SATURDAY','SUNDAY']
         },
   syllabusName:String,
   syllabusPath:String,
