@@ -10,6 +10,15 @@ const logger       = require('morgan');
 const path         = require('path');
 
 
+const session      = require("express-session");
+const passport     = require("passport");
+const LocalStrategy= require("passport-local").Strategy;
+
+const User         = require('./models/User');
+const bcrypt       = require('bcryptjs');
+const flash        = require("connect-flash");
+
+
 mongoose
   .connect('mongodb://localhost/project-2', {useNewUrlParser: true})
   .then(x => {
@@ -49,13 +58,58 @@ app.use(favicon(path.join(__dirname, 'public', 'images', 'favicon.ico')));
 // default value for title local
 app.locals.title = 'Express - Generated with IronGenerator';
 
+app.use(session({
+  secret: "randomsecretword",
+  resave: true,
+  saveUninitialized: true
+}));
 
+passport.serializeUser((user, cb) => {
+  cb(null, user._id);
+});
+
+passport.deserializeUser((id, cb) => {
+  User.findById(id, (err, user) => {
+    if (err) { return cb(err); }
+    cb(null, user);
+  });
+});
+
+app.use(flash());
+
+passport.use(new LocalStrategy((username, password, next) => {
+  User.findOne({ username }, (err, user) => {
+    if (err) {
+      return next(err);
+    }
+    if (!user) {
+      return next(null, false, { message: "Incorrect username" });
+    }
+    if (!bcrypt.compareSync(password, user.password)) {
+      return next(null, false, { message: "Incorrect password" });
+    }
+
+    return next(null, user);
+  });
+}));
+
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+  res.locals.currentUser = req.user;
+  res.locals.errorMessage = req.flash('error');
+  res.locals.successMessage = req.flash('success');
+  next();
+});
 
 
 app.use('/', require('./routes/index'));
 app.use('/',require('./routes/students-routes'))
 app.use('/',require('./routes/courses-routes'))
 app.use('/',require('./routes/instructors-routes'))
+app.use('/',require('./routes/users-routes'))
 app.use('/',require('./routes/students-api'))
 app.use('/',require('./routes/instructors-api'))
 app.use('/',require('./routes/courses-api'))

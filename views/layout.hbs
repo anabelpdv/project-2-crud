@@ -14,8 +14,17 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 <body>
+  {{#if errorMessage}}
+    <div style="border: 1px solid red">
+        {{errorMessage}}
+    </div>
+    {{/if}}
+    {{#if successMessage}}
+      <div style="border: 1px solid green">
+      {{successMessage}}
+      </div>
+    {{/if}}
   <nav>
-  
   <a href="/instructors">Instructors list</a>
   <a href="/students">Estudents list</a>
   <a href="/courses">Courses list</a>
