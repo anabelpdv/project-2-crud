@@ -1,35 +1,35 @@
-<h1>Create Course</h1>
+<h1>Edit Course</h1>
 <form  id="course-create" action="/courses/create" method='post' enctype="multipart/form-data">
     <label for="name">Name</label>
-    <input type="text" name="name" id="name">
+    <input type="text" name="name" id="name" value="{{course.name}}">
 
     <label for="code">Code</label>
-    <input type="text" name="code" id="code">
+    <input type="text" name="code" id="code" value="{{course.code}}">
 
     <label for="instroduction">Introduction</label>
-    <br> <textarea id="introduction" name="introduction" rows="15" cols="80">
+    <br> <textarea id="introduction" name="introduction" rows="15" cols="80"> {{course.introduction}}
     </textarea>
 
     <br><label for="term">Term:</label>
     <br> <select name="term" id="term"></select>
     
     <br><label for="startDate">Start date:</label>
-    <br><input  type="date" name="startDate" id="startDate">
+    <br><input  type="date" name="startDate" id="startDate" value="{{course.startDate}}">
 
     <br><label for="endDate">End date:</label>
-    <br><input type="date" name="endDate" id="endDate">
+    <br><input type="date" name="endDate" id="endDate" value="{{course.endDate}}">
 
     <br><label for="startTime">Start time:</label>
-    <br><input type="time" name="startTime" id="startTime">
+    <br><input type="time" name="startTime" id="startTime"value="{{course.startTime}}">
 
     <br><label for="endTime">End time:</label>
-    <br><input type="time" name="endTime" id="endTime">
+    <br><input type="time" name="endTime" id="endTime"value="{{course.endTime}}">
 
     <br><label for="days">Days</label>
     <br><div id="days"></div>
 
     <br><label for="syllabus">Syllabus</label>
-    <br><input type="file" name="syllabus" id="syllabus" required>
+    <br><input required type="file" name="syllabus" id="syllabus" required>
 
     <br> <label for="instructorList">Add Instructor</label>
     <div id="instructorList"></div>
@@ -39,6 +39,4 @@
     
     <button type="submit">Save</button>
 </form>
-
-
 

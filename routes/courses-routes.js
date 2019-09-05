@@ -25,13 +25,16 @@ router.get('/course/details/:id', (req, res, next) => {
 })
 
 router.get('/courses/create',(req, res, next) => {
+  if(req.user.role != 'ADMIN'){
+    req.flash('error', 'Need admin permition to create course')
+    res.redirect('/')
+  }
   Student
         .find()
         .then(students => {
           res.render('courses-views/course-create', {students}) 
         })
         .catch(err => next(err))
-
 })
 
 router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) => {
@@ -59,6 +62,15 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
           res.redirect('/')
         })
         .catch(err => next(err));
+  })
+
+  router.get('/course/edit/:id',(req, res, next) => {
+    Course
+          .findById(req.params.id)
+          .then(course  => {
+            res.render('courses-views/course-edit',{course})
+          })
+          .catch(err => next(err))    
   })
 module.exports = router;
 
