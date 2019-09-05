@@ -1,6 +1,6 @@
 <h1>Edit Course</h1>
-<form  id="course-create" action="/courses/create" method='post' enctype="multipart/form-data">
-    <input type='hidden' id="course-id" value="{{course._id}}">
+<form  id="course-create" action="/course/edit" method='post' enctype="multipart/form-data">
+    <input type='hidden' name="id" id="course-id" value="{{course._id}}">
     <label for="name">Name</label>
     <input type="text" name="name" id="name" value="{{course.name}}">
 
@@ -12,11 +12,9 @@
     </textarea>
 
     <br><label for="term">Term:</label>
-    <br> <select name="term" id="term">
-    {{#each schoolTerms}}
-    <option value={{this}}>{{this}}</option>
-    {{/each}}
-    </select>
+    <br> <select name="term" id="term"></select>
+    <div id="term">
+    </div>
     
     <br><label for="startDate">Start date:</label>
     <br><input  type="date" name="startDate" id="startDate" value="{{course.startDate}}">
@@ -31,11 +29,7 @@
     <br><input type="time" name="endTime" id="endTime"value="{{course.endTime}}">
 
     <br><label for="days">Days</label>
-    <div>
-        {{#each weekDays}}
-        <input type="checkbox" name="days" class="days" value="{{this}}"> 
-        {{this}}
-        {{/each}}
+    <div id="days">
     </div>
 
     <br><label for="syllabus">Syllabus</label>
@@ -59,7 +53,8 @@
           <br><input type="checkbox" checked name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
           {{else}}
           <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-          {{/if}}
+          {{/if
+          }}
           {{/each}}
       </div>
     

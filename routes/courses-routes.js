@@ -95,7 +95,7 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
                                   })
                                 
                                 })
-                                res.render('courses-views/course-edit', {course, students, instructors, weekDays,schoolTerms}) 
+                                res.render('courses-views/course-edit', {course, students, instructors,schoolTerms}) 
                               })
                               .catch(err => next(err)) 
                       })
@@ -103,6 +103,33 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
           })
           .catch(err => next(err))    
   })
+
+  router.post('/course/edit',uploadCloud.single('syllabus'),(req, res, next) => {
+    const updatedCourse = {
+      name: req.body.name,
+      code: req.body.code,
+      introduction: req.body.introduction,
+      term: req.body.term,
+      startDate: req.body.startDate,
+      endDate:  req.body.endDate,
+      startTime: req.body.startTime,
+      endTime:  req.body.endTime,
+      days: req.body.days,
+      syllabusName : req.file.originalname,
+      syllabusPath: req.file.url,
+      previewImage: '/images/preview-0.jpg',
+      instructor: req.body.instructor,
+      studentList: req.body.studentList,
+    }
+    Course
+          .findByIdAndUpdate(req.body.id,updatedCourse )
+          .then(updatedcourse => {
+            req.flash('success', 'Course succesfully updated')
+            res.redirect(`/course/details/${req.body.id}`)
+          })
+          .catch(err => next(err))     
+  })
+  
 module.exports = router;
 
 
