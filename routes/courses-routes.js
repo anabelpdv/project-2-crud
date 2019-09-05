@@ -82,6 +82,19 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
                         Student
                               .find() 
                               .then(students => {
+                                instructors.forEach(instructor => {
+                                  if(instructor._id.equals(course.instructor)){
+                                    instructor.isTeaching = true;
+                                  }
+                                })
+                                students.forEach(student => {
+                                  course.studentList.forEach(courseStudent =>{
+                                    if(student._id.equals(courseStudent)){
+                                      student.isInCourse = true;
+                                    }
+                                  })
+                                
+                                })
                                 res.render('courses-views/course-edit', {course, students, instructors, weekDays,schoolTerms}) 
                               })
                               .catch(err => next(err)) 

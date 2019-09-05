@@ -31,7 +31,12 @@
     <br><input type="time" name="endTime" id="endTime"value="{{course.endTime}}">
 
     <br><label for="days">Days</label>
-    <br><div id="days"></div>
+    <div>
+        {{#each weekDays}}
+        <input type="checkbox" name="days" class="days" value="{{this}}"> 
+        {{this}}
+        {{/each}}
+    </div>
 
     <br><label for="syllabus">Syllabus</label>
     <br><input required type="file" name="syllabus" id="syllabus" required>
@@ -39,14 +44,22 @@
     <br> <label for="instructorList">Add Instructor</label>
     <div>
           {{#each instructors}}
+          {{#if this.isTeaching}}
+          <br> <input name="instructor" checked type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+          {{else}}
           <br> <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+          {{/if}}
           {{/each}}
       </div>
 
       <br><label for="studentList">Add Students</label>
       <div>
           {{#each students}}
+          {{#if this.isInCourse}}
+          <br><input type="checkbox" checked name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+          {{else}}
           <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+          {{/if}}
           {{/each}}
       </div>
     
