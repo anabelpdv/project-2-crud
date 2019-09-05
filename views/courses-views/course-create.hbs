@@ -11,7 +11,11 @@
     </textarea>
 
     <br><label for="term">Term:</label>
-    <br> <select name="term" id="term"></select>
+    <br> <select name="term" id="term">
+        {{#each schoolTerms}}
+        <option value={{this}}>{{this}}</option>
+        {{/each}}
+        </select>
     
     <br><label for="startDate">Start date:</label>
     <br><input  type="date" name="startDate" id="startDate">
@@ -26,16 +30,28 @@
     <br><input type="time" name="endTime" id="endTime">
 
     <br><label for="days">Days</label>
-    <br><div id="days"></div>
+    <div>
+        {{#each weekDays}}
+        <input type="checkbox" name="days" class="days" value="{{this}}"> {{this}}
+        {{/each}}
+    </div>
 
     <br><label for="syllabus">Syllabus</label>
     <br><input type="file" name="syllabus" id="syllabus" required>
 
     <br> <label for="instructorList">Add Instructor</label>
-    <div id="instructorList"></div>
+    <div>
+        {{#each instructors}}
+        <br> <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+        {{/each}}
+    </div>
 
     <br><label for="studentList">Add Students</label>
-    <div id="studentList">Anabel</div>
+    <div>
+        {{#each students}}
+        <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+        {{/each}}
+    </div>
     
     <button type="submit">Save</button>
 </form>

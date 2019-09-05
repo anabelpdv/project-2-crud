@@ -1,5 +1,6 @@
 <h1>Edit Course</h1>
 <form  id="course-create" action="/courses/create" method='post' enctype="multipart/form-data">
+    <input type='hidden' id="course-id" value="{{course._id}}">
     <label for="name">Name</label>
     <input type="text" name="name" id="name" value="{{course.name}}">
 
@@ -11,7 +12,11 @@
     </textarea>
 
     <br><label for="term">Term:</label>
-    <br> <select name="term" id="term"></select>
+    <br> <select name="term" id="term">
+    {{#each schoolTerms}}
+    <option value={{this}}>{{this}}</option>
+    {{/each}}
+    </select>
     
     <br><label for="startDate">Start date:</label>
     <br><input  type="date" name="startDate" id="startDate" value="{{course.startDate}}">
@@ -32,10 +37,18 @@
     <br><input required type="file" name="syllabus" id="syllabus" required>
 
     <br> <label for="instructorList">Add Instructor</label>
-    <div id="instructorList"></div>
+    <div>
+          {{#each instructors}}
+          <br> <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+          {{/each}}
+      </div>
 
-    <br><label for="studentList">Add Students</label>
-    <div id="studentList">Anabel</div>
+      <br><label for="studentList">Add Students</label>
+      <div>
+          {{#each students}}
+          <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+          {{/each}}
+      </div>
     
     <button type="submit">Save</button>
 </form>

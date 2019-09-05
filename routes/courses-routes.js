@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const Course = require('../models/Course');
 const Student = require('../models/Student');
+const Instructor = require('../models/Instructor');
 const uploadCloud = require('../config/cloudinary.js');
 
 router.get('/courses', (req, res, next) => {
@@ -15,7 +16,6 @@ router.get('/courses', (req, res, next) => {
 })
 
 router.get('/course/details/:id', (req, res, next) => {
-
   Course
     .findById(req.params.id)
     .populate('instructor')
@@ -24,15 +24,23 @@ router.get('/course/details/:id', (req, res, next) => {
   
 })
 
+const schoolTerms = ['Spring','Fall','Summer'];
+const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']; 
 router.get('/courses/create',(req, res, next) => {
   if(req.user.role != 'ADMIN'){
     req.flash('error', 'Need admin permition to create course')
     res.redirect('/')
   }
-  Student
+  Instructor
         .find()
-        .then(students => {
-          res.render('courses-views/course-create', {students}) 
+        .then(instructors => {
+            Student
+                    .find() 
+                    .then(students => {
+                      res.render('courses-views/course-create', {students, instructors,weekDays,schoolTerms}) 
+                    })
+                    .catch(err => next(err))
+          
         })
         .catch(err => next(err))
 })
@@ -68,7 +76,17 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
     Course
           .findById(req.params.id)
           .then(course  => {
-            res.render('courses-views/course-edit',{course})
+              Instructor
+                    .find()
+                    .then(instructors => {
+                        Student
+                              .find() 
+                              .then(students => {
+                                res.render('courses-views/course-edit', {course, students, instructors, weekDays,schoolTerms}) 
+                              })
+                              .catch(err => next(err)) 
+                      })
+                    .catch(err => next(err))
           })
           .catch(err => next(err))    
   })

@@ -8,22 +8,16 @@ router.get('/api/courses', (req, res, next) => {
     .then(courses => {
       res.json(courses)
     })
+    .catch(err => console.log("Error retrieving courses", err))
+})
+
+router.get('/api/courses/:id', (req, res, next) => {
+  Course
+    .findById(req.params.id)
+    .then(course => {
+      res.json(course)
+    })
     .catch(err => console.log("Error retriving courses", err))
 })
-
-
-router.post('/api/courses', (req, res, next) => {
-
-  console.log('Coge lo que te mande',req.file)
-  // Course
-  //   .create(req.body)
-  //   .then(response =>{
-  //     res.json({msg: 'Course succesfully added'});
-  //   })
-  //   .catch(err=>{
-  //     console.log(err);
-  //   })
-})
-
 
 module.exports = router;
