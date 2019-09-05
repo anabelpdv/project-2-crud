@@ -1,6 +1,5 @@
 
 $( document ).ready(function() {
-
   const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']; 
   const schoolTerms = ['Spring','Fall','Summer'];
   let currentCourse = $('#course-id').val();
@@ -25,7 +24,6 @@ $( document ).ready(function() {
         if(term == course.term){
           selected = true;
         }
-        
         if(selected){
           $('#term').append(`<option selected value=${term}>${term}</option>`)
         }else{
@@ -34,29 +32,5 @@ $( document ).ready(function() {
         
       })
   })
-  
-
-
-
-  
-
-
-// axios.get('/api/students')
-//   .then(response => {
-//     let students = response.data;
-//     students.forEach(student => {
-//         $('#studentList').append(`<br> <input type="checkbox" name="studentList" class="studentList" value=${student._id}> ${student.name} ${student.lastName}</input>`)
-//     }) 
-//   })
-//   .catch(err => console.log('Error retrieving students'))
-
-// axios.get('/api/instructors')
-//     .then(response => {
-//       let instructors = response.data;
-//       instructors.forEach(instructor => {
-//           $('#instructorList').append(`<br> <input name="instructor" type="radio" class="instructorList" value=${instructor._id}> ${instructor.name} ${instructor.lastName}</input>`)
-//       })  
-//     })
-//     .catch(err => console.log('Error retrieving instructor')) 
 
 });

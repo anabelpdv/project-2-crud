@@ -8,7 +8,7 @@ router.get('/api/courses', (req, res, next) => {
     .then(courses => {
       res.json(courses)
     })
-    .catch(err => console.log("Error retrieving courses", err))
+    .catch(err => next(err))
 })
 
 router.get('/api/courses/:id', (req, res, next) => {
@@ -17,7 +17,7 @@ router.get('/api/courses/:id', (req, res, next) => {
     .then(course => {
       res.json(course)
     })
-    .catch(err => console.log("Error retriving courses", err))
+    .catch(err => next(err))
 })
 
 module.exports = router;

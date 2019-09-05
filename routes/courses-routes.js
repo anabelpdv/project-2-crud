@@ -25,12 +25,13 @@ router.get('/course/details/:id', (req, res, next) => {
 })
 
 const schoolTerms = ['Spring','Fall','Summer'];
-const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']; 
+const weekDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']; 
+
 router.get('/courses/create',(req, res, next) => {
-  if(req.user.role != 'ADMIN'){
-    req.flash('error', 'Need admin permition to create course')
-    res.redirect('/')
-  }
+  // if(req.user.role != 'ADMIN'){
+  //   req.flash('error', 'Need admin permition to create course')
+  //   res.redirect('/')
+  // }
   Instructor
         .find()
         .then(instructors => {
@@ -40,7 +41,6 @@ router.get('/courses/create',(req, res, next) => {
                       res.render('courses-views/course-create', {students, instructors,weekDays,schoolTerms}) 
                     })
                     .catch(err => next(err))
-          
         })
         .catch(err => next(err))
 })
@@ -129,7 +129,16 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
           })
           .catch(err => next(err))     
   })
-  
+
+
+  router.post('/courses/delete/:id',(req, res, next) => {
+    Course
+          .findByIdAndRemove(req.params.id)  
+          .then(()=>{
+            res.redirect('/courses')
+          })
+          .catch(err => next(err))
+  })
 module.exports = router;
 
 
