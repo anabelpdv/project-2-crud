@@ -1,5 +1,8 @@
  <script src="/javascripts/courses.js"></script>
 <h1>Edit Course</h1>
+<form action="/courses/delete/{{course._id}}" method="post">
+<button>Delete Course</button>
+</form>
 <form  id="course-create" action="/course/edit" method='post' enctype="multipart/form-data">
     <input type='hidden' name="id" id="course-id" value="{{course._id}}">
     <label for="name">Name</label>
@@ -38,26 +41,26 @@
 
     <br> <label for="instructorList">Add Instructor</label>
     <div>
-          {{#each instructors}}
-          {{#if this.isTeaching}}
-          <br> <input name="instructor" checked type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-          {{else}}
-          <br> <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-          {{/if}}
-          {{/each}}
-      </div>
+    {{#each instructors}}
+    {{#if this.isTeaching}}
+    <br> <input name="instructor" checked type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+    {{else}}
+    <br> <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+    {{/if}}
+    {{/each}}
+    </div>
 
-      <br><label for="studentList">Add Students</label>
-      <div>
-          {{#each students}}
-          {{#if this.isInCourse}}
-          <br><input type="checkbox" checked name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-          {{else}}
-          <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-          {{/if
-          }}
-          {{/each}}
-      </div>
+    <br><label for="studentList">Add Students</label>
+    <div>
+    {{#each students}}
+    {{#if this.isInCourse}}
+    <br><input type="checkbox" checked name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+    {{else}}
+    <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+    {{/if
+    }}
+    {{/each}}
+    </div>
     
     <button type="submit">Save</button>
 </form>

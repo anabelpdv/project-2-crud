@@ -39,11 +39,11 @@ router.get('/courses/create',(req, res, next) => {
       .find({role : 'INSTRUCTOR'})
       .then(instructors => {
         User
-                  .find({role : 'STUDENT'}) 
-                  .then(students => {
-                    res.render('courses-views/course-create', {students, instructors,weekDays,schoolTerms}) 
-                  })
-                  .catch(err => next(err))
+            .find({role : 'STUDENT'}) 
+            .then(students => {
+              res.render('courses-views/course-create', {students, instructors,weekDays,schoolTerms}) 
+            })
+            .catch(err => next(err))
       })
       .catch(err => next(err))
 })
@@ -75,15 +75,15 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
         .catch(err => next(err));
   })
 
-  router.get('/course/edit/:id',(req, res, next) => {
+  router.get('/courses/edit/:id',(req, res, next) => {
     Course
           .findById(req.params.id)
           .then(course  => {
-              Instructor
-                    .find()
+              User
+                    .find({role:'INSTRUCTOR'})
                     .then(instructors => {
-                        Student
-                              .find() 
+                        User
+                              .find({role: 'STUDENT'}) 
                               .then(students => {
                                 instructors.forEach(instructor => {
                                   if(instructor._id.equals(course.instructor)){

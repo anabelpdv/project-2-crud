@@ -1,6 +1,6 @@
 
 $( document ).ready(function() {
-  const weekDays = ['MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY','SUNDAY']; 
+  const weekDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']; 
   const schoolTerms = ['Spring','Fall','Summer'];
   let currentCourse = $('#course-id').val();
   axios.get(`/api/courses/${currentCourse}`)
