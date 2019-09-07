@@ -6,11 +6,15 @@ const Instructor = require('../models/Instructor');
 const uploadCloud = require('../config/cloudinary.js');
 
 router.get('/courses', (req, res, next) => {
+  let isAdmin = false;
+  if(req.user.role == 'ADMIN'){
+    isAdmin = true;
+  }
   Course
     .find()
     .populate('instructor')
     .populate('studentList')
-    .then(courses => res.render('courses-views/courses-preview', {courses}))
+    .then(courses => res.render('courses-views/courses-preview', {courses, isAdmin:isAdmin}))
     .catch(err => console.log("Error retrieving course", err))
   
 })
@@ -28,10 +32,10 @@ const schoolTerms = ['Spring','Fall','Summer'];
 const weekDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']; 
 
 router.get('/courses/create',(req, res, next) => {
-  // if(req.user.role != 'ADMIN'){
-  //   req.flash('error', 'Need admin permition to create course')
-  //   res.redirect('/')
-  // }
+  if(req.user.role != 'ADMIN'){
+    req.flash('error', 'Need admin permition to create course')
+    res.redirect('/')
+  }
   Instructor
         .find()
         .then(instructors => {
