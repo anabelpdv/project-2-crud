@@ -5,6 +5,7 @@ const Schema   = mongoose.Schema;
 const studentSchema = new Schema({
   name : String,
   lastName: String,
+  studentId: String,
   profileImage: String
 });
 

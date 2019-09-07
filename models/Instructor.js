@@ -5,6 +5,7 @@ const Schema   = mongoose.Schema;
 const instructorSchema = new Schema({
   name : String,
   lastName: String,
+  instructorId: String,
   profileImage: String
 });
 

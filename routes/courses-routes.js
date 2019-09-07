@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
+const User = require('../models/User');
 const Course = require('../models/Course');
-const Student = require('../models/Student');
-const Instructor = require('../models/Instructor');
 const uploadCloud = require('../config/cloudinary.js');
 
 router.get('/courses', (req, res, next) => {
@@ -36,17 +35,17 @@ router.get('/courses/create',(req, res, next) => {
     req.flash('error', 'Need admin permition to create course')
     res.redirect('/')
   }
-  Instructor
-        .find()
-        .then(instructors => {
-            Student
-                    .find() 
-                    .then(students => {
-                      res.render('courses-views/course-create', {students, instructors,weekDays,schoolTerms}) 
-                    })
-                    .catch(err => next(err))
-        })
-        .catch(err => next(err))
+  User
+      .find({role : 'INSTRUCTOR'})
+      .then(instructors => {
+        User
+                  .find({role : 'STUDENT'}) 
+                  .then(students => {
+                    res.render('courses-views/course-create', {students, instructors,weekDays,schoolTerms}) 
+                  })
+                  .catch(err => next(err))
+      })
+      .catch(err => next(err))
 })
 
 router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) => {
