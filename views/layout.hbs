@@ -27,17 +27,24 @@
     {{/if}}
 <nav>
   {{#if currentUser}}
-  <h3>Hello, {{currentUser.username}}</h3>
-  <form action="/logout" method="POST">
-        <button>Logout</button>
-    </form>
+  
+
+
+
+<nav class="navbar navbar-light bg-light">
+<img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+<h1>{{currentUser.name}}</h1>
+<form action="/logout" method="POST">
+  <button>Logout</button>
+  </form>
+</nav>
   {{/if}}
+<br> <a href="/profile">Profile</a>
 <br><a href="/instructors">Instructors list</a>
 <br><a href="/students">Estudents list</a>
 <br> <a href="/courses">Courses list</a>
 <br> <a href="/courses/create">Create course</a>
 <br> <a href="/login">Login</a>
-<br> <a href="/signup">Signup</a>
 <br> <a href="/students/create">Create Student</a>
 <br> <a href="/instructors/create">Create Instructor</a>
 </nav>

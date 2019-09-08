@@ -44,35 +44,13 @@ router.post('/students/create', (req, res, next) => {
 })
 
 
-
-// router.post('/students/create', (req, res, next) => {
-//   Student
-//         .create(req.body)
-//         .then(newStudent => {
-//             res.redirect('/students')//Here need to redirect to students detail when view is available
-//         })
-//         .catch(err => next(err))
-// })
-
-// router.get('/students', (req, res, next) => {
-//   Student
-//       .find()
-//       .then(students => {
-//         res.render('students-views/students', {students})
-//       })
-//       .catch(err => console.log("Error retriving student", err)) 
-// })
-
-// router.get('/student/profile/:id', (req, res, next) => {
-//   let studentId = req.params.id;
-//   Course
-//       .find({studentList: {$all: [studentId]}})
-//       .populate('studentList')
-//       .populate('instructor')
-//       .then(courses => {
-//         res.render('students-views/student-profile', {courses,studentId})
-//       })
-//       .catch(err => console.log('Error while retrieving courses',err))
-// })
+router.get('/students', (req, res, next) => {
+  User
+      .find({role: 'STUDENT'})
+      .then(students => {
+        res.render('students-views/students', {students})
+      })
+      .catch(err => console.log("Error retriving student", err)) 
+})
 
 module.exports = router;

@@ -60,13 +60,13 @@ router.post('/instructors/create', (req, res, next) => {
 //     role: 'INSTRUCTOR'
 //   })
 
-// router.get('/instructors', (req, res, next) => {
-//   Instructor
-//     .find()
-//     .then(instructors => res.render('instructors-views/instructors', {instructors}))
-//     .catch(err => console.log("Error retrieving course", err))
+router.get('/instructors', (req, res, next) => {
+  User
+    .find({role:'INSTRUCTOR'})
+    .then(instructors => res.render('instructors-views/instructors', {instructors}))
+    .catch(err => console.log("Error retrieving course", err))
   
-// })
+})
 
 
 // router.get('/instructor/profile/:id', (req, res, next) => {
