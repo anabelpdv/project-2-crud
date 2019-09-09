@@ -1,0 +1,40 @@
+.content-wrapper{
+  display: flex;
+  flex-wrap: wrap;
+  width:70%;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.circular-container{
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  background-color:black;
+  margin:40px;
+  line-height: 150px;
+  text-align: center;
+  font-size: 5em;
+}
+
+#clock{
+  color:#7BF6BE
+}
+#door{
+  color:#0448C6;
+}
+#gavel{
+  color:#6D4CDF
+}
+#map{
+  color:#CB4897;
+}
+#task{
+  color:#E33E33;
+}
+#file{
+  color:#D2662C;
+}
+#video{
+  color:#F3C942;
+}
