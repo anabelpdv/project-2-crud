@@ -28,24 +28,29 @@
 <nav>
   {{#if currentUser}}
   
+<nav class="navbar fixed-top">
+  <a href="/profile">Profile</a>
+  <a href="/instructors">Instructors list</a>
+  <a href="/students">Estudents list</a>
+  <a href="/courses">Courses list</a>
+  <a href="/courses/create">Create course</a>
+  <a href="/students/create">Create Student</a>
+  <a href="/instructors/create">Create Instructor</a>
 
-<nav class="navbar navbar-light bg-light">
+  <form class="form-inline" action="/logout" method="post">
+    <button class="btn logout" type="submit">Logout</button>
+  </form>
+</nav>
+  
+{{!-- <nav class="navbar navbar-light bg-light">
 <img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
 <h1>{{currentUser.name}}</h1>
 <form action="/logout" method="POST">
   <button>Logout</button>
   </form>
-</nav>
+</nav> --}}
   {{/if}}
-<br> <a href="/profile">Profile</a>
-<br><a href="/instructors">Instructors list</a>
-<br><a href="/students">Estudents list</a>
-<br> <a href="/courses">Courses list</a>
-<br> <a href="/courses/create">Create course</a>
-<br> <a href="/login">Login</a>
-<br> <a href="/students/create">Create Student</a>
-<br> <a href="/instructors/create">Create Instructor</a>
-</nav>
+
 
   {{{body}}}
 
