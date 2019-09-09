@@ -21,10 +21,29 @@ router.get('/courses', (req, res, next) => {
 router.get('/course/details/:id', (req, res, next) => {
   Course
     .findById(req.params.id)
-    .populate('instructor')
-    .then(course => res.render('courses-views/course-details', {course}))
+    .then(course => {
+      res.render('courses-views/course-details', {course})
+    })
     .catch(err => console.log("Error retrieving course information", err))
-  
+})
+
+router.get('/course/details/:id/page/:code', (req, res, next) => {
+  Course
+    .findById(req.params.id)
+    .then(course => {
+        switch(req.params.code){
+          case '0':
+              res.render('courses-views/schedule', {course})
+              break;
+          case '1':
+              res.render('courses-views/intro', {course})
+              break;    
+          case '2':
+              res.render('courses-views/syllabus', {course})
+              break;  
+        }
+    })
+    .catch(err => console.log("Error retrieving course information", err))
 })
 
 const schoolTerms = ['Spring','Fall','Summer'];

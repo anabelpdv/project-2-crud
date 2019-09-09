@@ -18,7 +18,7 @@ const courseSchema = new Schema({
   syllabusPath:String,
   previewImage: String,
   instructor: {type: Schema.Types.ObjectId, ref: 'User' },
-  studentList: [{type:Schema.Types.ObjectId, ref:'User'}]
+  studentList: [{type:Schema.Types.ObjectId, ref:'User'}],
 });
 
 const Course = mongoose.model('Course', courseSchema);
