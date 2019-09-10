@@ -24,14 +24,38 @@ router.post('/logout', (req, res, next)=>{
 
 router.get('/profile', (req, res, next) => {
   let userId = req.user.id;
-  Course
-      .find({studentList: {$all: [userId]}})
-      .populate('studentList')
-      .populate('instructor')
-      .then(courses => {
-        res.render('users-views/profile', {userId})
-      })
-      .catch(err => console.log('Error while retrieving courses',err))
+  let isAdmin = false;
+
+  if(req.user.role == 'ADMIN'){
+    isAdmin = true;
+  }
+
+  if(req.user.role == 'INSTRUCTOR'){
+    Course
+    .find({instructor:userId})
+    .populate('studentList')
+    .populate('instructor')
+    .then(courses => {
+      res.render('users-views/profile',{courses, isAdmin})
+    })
+    .catch(err => console.log('Error while retrieving courses',err))
+  } else if(req.user.role == 'STUDENT'){
+    Course
+    .find({studentList: {$all: [userId]}})
+    .populate('instructor')
+    .then(courses => {
+      res.render('users-views/profile',{courses, isAdmin})
+    })
+    .catch(err => console.log('Error while retrieving courses',err))
+  }else{
+    Course
+    .find()
+    .populate('studentList')
+    .populate('instructor')
+    .then(courses => {
+      res.render('courses-views/courses-preview',{courses, isAdmin})
+    })
+  }
 })
 
 
