@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const passport = require("passport");
 
 router.get('/login',(req,res,next) => {
-  res.render('users-views/login');
+  res.render('users-views/login',{layout:'empty'});
 })
 
 router.post('/login', passport.authenticate("local", {

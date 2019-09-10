@@ -96,7 +96,15 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use((req, res, next) => {
+  let isAdmin = false;
   res.locals.currentUser = req.user;
+  if(req.user){
+    if(req.user.role == 'ADMIN'){
+      isAdmin = true;
+    }
+  }
+
+  res.locals.isAdmin = isAdmin; 
   res.locals.errorMessage = req.flash('error');
   res.locals.successMessage = req.flash('success');
   next();

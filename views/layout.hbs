@@ -29,20 +29,23 @@
   
 <nav class="navbar fixed-top">
   <h2>{{title}}</h2>
+
   {{#if currentUser}}
-  <a href="/profile">Profile</a>
-  <a href="/instructors">Instructors list</a>
-  <a href="/students">Estudents list</a>
-  <a href="/courses">Courses list</a>
-  <a href="/courses/create">Create course</a>
-  <a href="/students/create">Create Student</a>
-  <a href="/instructors/create">Create Instructor</a>
-  <form class="form-inline" action="/logout" method="post">
-  <button class="btn logout" type="submit">Logout</button>
-  </form>
+      <a href="/courses">Courses list</a>
+        {{#if isAdmin}}
+            <a href="/students">Estudents list</a>
+            <a href="/instructors">Instructors list</a>
+            <a href="/students/create">Create Student</a>
+            <a href="/instructors/create">Create Instructor</a>
+            <a href="/courses/create">Create course</a>
+        {{/if}}
+      <a href="/profile">{{currentUser.name}}</a>
+      <form class="form-inline" action="/logout" method="post">
+      <button class="btn logout" type="submit">Logout</button>
+      </form>
   {{else}}
-  <button class="btn bg-light">Login</button>
-{{/if}}
+  <a class="btn bg-light" href="/login">Login</a>
+  {{/if}}
 </nav>
 
 

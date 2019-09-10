@@ -56,3 +56,43 @@ header{
 
 /****************************************************************************/
 
+
+
+/******************************* login **********************************/
+
+#login-form {
+  margin: 30px auto;
+  width: 380px;
+  margin-top: 30vh;;
+}
+#login-form  h1{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#login-form  button {
+  background: #1A1A1A;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  border: 1px solid  #1A1A1A;
+  width: 100%;
+}
+
+#login-form label {
+  color: #666;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#login-form button:hover {
+  color:#aaa;
+  transition: .3s ease background;
+}
+
+
+/****************************************************************************/
