@@ -26,9 +26,10 @@
       </div>
     {{/if}}
 <nav>
-  {{#if currentUser}}
   
 <nav class="navbar fixed-top">
+  <h2>{{title}}</h2>
+  {{#if currentUser}}
   <a href="/profile">Profile</a>
   <a href="/instructors">Instructors list</a>
   <a href="/students">Estudents list</a>
@@ -36,20 +37,13 @@
   <a href="/courses/create">Create course</a>
   <a href="/students/create">Create Student</a>
   <a href="/instructors/create">Create Instructor</a>
-
   <form class="form-inline" action="/logout" method="post">
-    <button class="btn logout" type="submit">Logout</button>
+  <button class="btn logout" type="submit">Logout</button>
   </form>
+  {{else}}
+  <button class="btn bg-light">Login</button>
+{{/if}}
 </nav>
-  
-{{!-- <nav class="navbar navbar-light bg-light">
-<img src="/docs/4.3/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-<h1>{{currentUser.name}}</h1>
-<form action="/logout" method="POST">
-  <button>Logout</button>
-  </form>
-</nav> --}}
-  {{/if}}
 
 
   {{{body}}}

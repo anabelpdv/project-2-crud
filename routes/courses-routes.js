@@ -40,6 +40,18 @@ router.get('/course/details/:id/page/:code', (req, res, next) => {
               break;    
           case '2':
               res.render('courses-views/syllabus', {course})
+              break; 
+          case '3':
+              res.render('courses-views/modules', {course})
+              break; 
+          case '4':
+              res.render('courses-views/assignments', {course})
+              break; 
+          case '5':
+              res.render('courses-views/articles', {course})
+              break;
+          case '6':
+              res.render('courses-views/videos', {course})
               break;  
         }
     })
