@@ -1,67 +1,106 @@
- <script src="/javascripts/courses.js"></script>
-<h1>Edit Course</h1>
-<form action="/courses/delete/{{course._id}}" method="post">
-<button>Delete Course</button>
-</form>
-<form  id="course-create" action="/course/edit" method='post' enctype="multipart/form-data">
+<script src="/javascripts/courses.js"></script>
+<header class='bg-light'>
+<div class="container">
+    <h1 class="display-4 header-text">Edit Course</h1>
+</div>
+</header>
+
+<div class="course-create">
+<div class="form-group">
+    <form id="course-delete-form" action="/courses/delete/{{course._id}}" method="post">
+    <button class="btn"><i class="fas fa-trash-alt"></i></button>
+    </form>
+</div>
+
+<form  id="course-create-form" action="/course/edit" method='post' enctype="multipart/form-data">
     <input type='hidden' name="id" id="course-id" value="{{course._id}}">
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name" value="{{course.name}}">
-
-    <label for="code">Code</label>
-    <input type="text" name="code" id="code" value="{{course.code}}">
-
-    <label for="instroduction">Introduction</label>
-    <br> <textarea id="introduction" name="introduction" rows="15" cols="80"> {{course.introduction}}
-    </textarea>
-
-    <br><label for="term">Term:</label>
-    <br> <select name="term" id="term"></select>
-    <div id="term">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" id="name" value="{{course.name}}">  
     </div>
     
-    <br><label for="startDate">Start date:</label>
-    <br><input  type="date" name="startDate" id="startDate" value="{{course.startDate}}">
-
-    <br><label for="endDate">End date:</label>
-    <br><input type="date" name="endDate" id="endDate" value="{{course.endDate}}">
-
-    <br><label for="startTime">Start time:</label>
-    <br><input type="time" name="startTime" id="startTime"value="{{course.startTime}}">
-
-    <br><label for="endTime">End time:</label>
-    <br><input type="time" name="endTime" id="endTime"value="{{course.endTime}}">
-
-    <br><label for="days">Days</label>
-    <div id="days">
+    <div class="form-group">
+        <label for="code">Code</label>
+        <input type="text" class="form-control" name="code" id="code" value="{{course.code}}">
     </div>
 
-    <br><label for="syllabus">Syllabus</label>
-    <br><input required type="file" name="syllabus" id="syllabus" required>
-
-    <br> <label for="instructorList">Add Instructor</label>
-    <div>
-    {{#each instructors}}
-    {{#if this.isTeaching}}
-    <br> <input name="instructor" checked type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-    {{else}}
-    <br> <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-    {{/if}}
-    {{/each}}
+    <div class="form-group">
+        <label for="instroduction">Introduction</label>
+        <textarea class="form-control" id="introduction"  name="introduction" rows="15" cols="80"> {{course.introduction}}
+        </textarea>
     </div>
 
-    <br><label for="studentList">Add Students</label>
+    <div class="form-group">
+        <label for="term">Term:</label>
+        <select class="form-control" name="term" id="term"></select>
+        <div id="term">
+    </div>
+    </div>
+
+    <div class="form-grup">
+        <label for="startDate">Start date:</label>
+        <input  type="date" class="form-control" name="startDate" id="startDate" value="{{course.startDate}}">
+    </div>
+
+    <div class="form-group">
+        <label for="endDate">End date:</label>
+        <input type="date" class="form-control" name="endDate" id="endDate" value="{{course.endDate}}">
+    </div>
+
+    <div class="form-group">
+        <label for="startTime">Start time:</label>
+        <input type="time" class="form-control" name="startTime" id="startTime"value="{{course.startTime}}">
+    </div>
+
+    <div class="form-group">
+        <label for="endTime">End time:</label>
+        <input type="time" class="form-control" name="endTime" id="endTime"value="{{course.endTime}}">
+    </div>
+
+    <div class="form-group">
+        <label for="days">Days</label>
+        <div id="days"></div>
+    </div>
+
+    <div class="form-group">
+        <label for="syllabus">Syllabus</label>
+        <input required type="file" class="form-control-file" name="syllabus" id="syllabus" required>
+    </div>
+
+    <div class="form-group">
+        <label for="instructorList">Instructor</label>
+        <div>
+        {{#each instructors}}
+            {{#if this.isTeaching}}
+                <div>
+                    <input name="instructor" checked type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+                </div>
+            {{else}}
+                <div>
+                    <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+                </div>
+            {{/if}}
+        {{/each}}
+        </div>
+    </div>
+
+<div class="form-group">
+<label for="studentList">Add Students</label>
     <div>
     {{#each students}}
-    {{#if this.isInCourse}}
-    <br><input type="checkbox" checked name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-    {{else}}
-    <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-    {{/if
-    }}
+        {{#if this.isInCourse}}
+            <div>
+                <input type="checkbox" checked name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+            </div>
+        {{else}}
+            <div>
+                <input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+            </div>
+        {{/if}}
     {{/each}}
     </div>
-    
-    <button type="submit">Save</button>
+</div>
+    <button class="btn" type="submit">Save</button>
 </form>
 
+</div>

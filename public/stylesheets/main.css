@@ -29,7 +29,7 @@ header{
 }
 
 .header-text{
-  line-height: 145px;
+  line-height: 120px;
 }
 
 #syllabus-frame{
@@ -69,11 +69,23 @@ header{
 
 /******************************* course-create *********************************/
 .course-create{
+
   width:50%;
   margin: 0 auto;
 }
-#course-create button{
 
+#course-delete-form button{
+  font-size: 2em;
+  color:#1A1A1A;
+  margin-left:94%;
+}
+
+#course-delete-form button:hover{
+  font-size: 2.07em;
+  transition: .2s ease;
+}
+
+#course-create-form button{
   width:100%;
   background: #1A1A1A;
   color: #fff;
@@ -81,7 +93,7 @@ header{
   padding: 8px 16px;
   text-transform: uppercase;
 }
-#course-create button:hover {
+#course-create-form button:hover {
   color:#aaa;
   transition: .3s ease background;
 }
@@ -94,7 +106,7 @@ header{
 
 #login-form {
   margin: 30px auto;
-  width: 380px;
+  width: 350px;
   margin-top: 30vh;;
 }
 #login-form  h1{
