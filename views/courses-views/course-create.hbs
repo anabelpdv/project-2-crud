@@ -3,64 +3,87 @@
     <h1 class="display-4 header-text">Add Course</h1>
 </div>
 </header>
+<div class="course-create">
+<form id="course-create" action="/courses/create" method='post' enctype="multipart/form-data">
+    <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" name="name" id="name">
+    </div>
 
-<form  id="course-create" action="/courses/create" method='post' enctype="multipart/form-data">
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name">
-
-    <label for="code">Code</label>
-    <input type="text" name="code" id="code">
-
-    <label for="instroduction">Introduction</label>
-    <br> <textarea id="introduction" name="introduction" rows="15" cols="80">
-    </textarea>
-
-    <br><label for="term">Term:</label>
-    <br> <select name="term" id="term">
-    {{#each schoolTerms}}
-    <option value={{this}}>{{this}}</option>
-    {{/each}}
+    <div class="form-group">
+        <label for="code">Code</label>
+        <input type="text" class="form-control" name="code" id="code">
+    </div>
+    <div class="form-group">
+        <label for="instroduction">Introduction</label>
+        <textarea class="form-control" id="introduction" name="introduction" rows="15" cols="80"> </textarea>
+    </div>
+    <div class="form-group">
+        <label for="term">Term:</label>
+        <select class="form-control" name="term" id="term">
+        {{#each schoolTerms}}
+        <option value={{this}}>{{this}}</option>
+        {{/each}}
     </select>
-    
-    <br><label for="startDate">Start date:</label>
-    <br><input  type="date" name="startDate" id="startDate">
-
-    <br><label for="endDate">End date:</label>
-    <br><input type="date" name="endDate" id="endDate">
-
-    <br><label for="startTime">Start time:</label>
-    <br><input type="time" name="startTime" id="startTime">
-
-    <br><label for="endTime">End time:</label>
-    <br><input type="time" name="endTime" id="endTime">
-
-    <br><label for="days">Days</label>
-    <div>
-        {{#each weekDays}}
-        <input type="checkbox" name="days" class="days" value="{{this}}"> 
-        {{this}}
-        {{/each}}
     </div>
-
-    <br><label for="syllabus">Syllabus</label>
-    <br><input type="file" name="syllabus" id="syllabus" required>
-
-    <br> <label for="instructorList">Add Instructor</label>
-    <div>
-        {{#each instructors}}
-        <br> <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-        {{/each}}
-    </div>
-
-    <br><label for="studentList">Add Students</label>
-    <div>
-        {{#each students}}
-        <br><input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
-        {{/each}}
+    <div class="form-group">
+        <label for="startDate">Start date:</label>
+        <input  type="date" class="form-control" name="startDate" id="startDate">
     </div>
     
-    <button type="submit">Save</button>
+    <div class="form-group">
+        <label for="endDate">End date:</label>
+        <input type="date" class="form-control" name="endDate" id="endDate">
+    </div>
+
+    <div class="form-group">
+        <label for="startTime">Start time:</label>
+        <input type="time" class="form-control" name="startTime" id="startTime">
+    </div>
+
+    <div class="form-group">
+        <label for="endTime">End time:</label>
+        <input type="time" class="form-control" name="endTime" id="endTime">
+    </div>
+
+    <div class="form-group"> 
+        <label for="days">Days</label>
+        <div>
+            {{#each weekDays}}
+            <input type="checkbox" name="days" class="days" value="{{this}}"> 
+            {{this}}    
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="syllabus">Syllabus</label>
+        <input type="file" class="form-control-file" name="syllabus" id="syllabus" required>
+    </div>
+
+    <div class="form-group">
+        <label for="instructorList">Instructor</label>
+        <div>
+            {{#each instructors}}
+            <div>
+                <input name="instructor" type="radio" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="studentList">Students</label>
+        <div>
+            {{#each students}}
+            <div>
+                <input type="checkbox" name="studentList" class="studentList" value={{this._id}}> {{this.name}} {{this.lastName}}</input>
+            </div>
+            {{/each}}
+        </div>
+    </div>
+    <button class="btn" type="submit">Save</button>
 </form>
 
-
+</div>
 
