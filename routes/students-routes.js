@@ -8,7 +8,7 @@ router.get('/students/create', (req, res, next) => {
   res.render('students-views/student-create')
 })
 
-router.post('/students/create', (req, res, next) => {
+router.post('/students/create', uploadCloud.single('photo'), (req, res, next) => {
   let username = req.body.username;
   let pword = req.body.password;
 
@@ -29,11 +29,17 @@ router.post('/students/create', (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(pword, salt);
 
+  let photo = '/images/default-image.png';
+    if(req.file){
+      photo =  req.file.url;
+    }
+
   const newStudent = {
     name : req.body.name,
     lastName : req.body.lastName,
     username : username,
     password : hashedPassword,
+    photo: photo,
     role : 'STUDENT'
   }
   User

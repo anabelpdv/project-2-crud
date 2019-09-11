@@ -6,8 +6,9 @@ const userSchema =  new Schema({
   password: String,
   name: String,
   lastName: String,
-  profileImagePath:{type: String,
-                    default:"/images/default-img.png"},
+  photo:{type: String,
+          default:"/images/default-img.png"
+        },
   role: {
     type: String,
     enum : ['ADMIN', 'INSTRUCTOR', 'STUDENT'],

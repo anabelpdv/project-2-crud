@@ -14,7 +14,6 @@ const courseSchema = new Schema({
   days:{type:[String],
           enum:['Monday','Tuesday','Wednesday', 'Thursday', 'Friday','Saturday','Sunday']
         },
-  syllabusName:String,
   syllabusPath:String,
   previewImage: String,
   instructor: {type: Schema.Types.ObjectId, ref: 'User' },

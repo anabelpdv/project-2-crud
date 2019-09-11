@@ -11,12 +11,13 @@ cloudinary.config({
 
 var storage = cloudinaryStorage({
   cloudinary: cloudinary,
-  folder: 'syllabus-folder', // The name of the folder in cloudinary
-  allowedFormats: ['pdf'],
+  folder: 'project-2-files', // The name of the folder in cloudinary
+  allowedFormats: ['pdf', 'jpg', 'png'],
   filename: function (req, file, cb) {
     cb(null, file.originalname); // The file on cloudinary would have the same name as the original file name
   }
 });
+
 
 const uploadCloud = multer({ storage: storage });
 

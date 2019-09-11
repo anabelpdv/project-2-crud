@@ -80,6 +80,11 @@ router.get('/courses/create',(req, res, next) => {
 })
 
 router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) => {
+  let syllabusPath = '/images/default-syllabus.pdf';
+    if(req.file){
+      syllabusPath = req.file.url;
+    }
+
   const newCourse = {
     name: req.body.name,
     code: req.body.code,
@@ -90,8 +95,7 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
     startTime: req.body.startTime,
     endTime:  req.body.endTime,
     days: req.body.days,
-    syllabusName : req.file.originalname,
-    syllabusPath: req.file.url,
+    syllabusPath: syllabusPath,
     previewImage: '/images/preview-0.jpg',
     instructor: req.body.instructor,
     studentList: req.body.studentList,
@@ -139,6 +143,12 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
   })
 
   router.post('/course/edit',uploadCloud.single('syllabus'),(req, res, next) => {
+
+    let syllabusPath = '/images/default-syllabus.pdf';
+    if(req.file){
+      syllabusPath = req.file.url;
+    }
+
     const updatedCourse = {
       name: req.body.name,
       code: req.body.code,
@@ -149,8 +159,7 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
       startTime: req.body.startTime,
       endTime:  req.body.endTime,
       days: req.body.days,
-      syllabusName : req.file.originalname,
-      syllabusPath: req.file.url,
+      syllabusPath: syllabusPath,
       previewImage: '/images/preview-0.jpg',
       instructor: req.body.instructor,
       studentList: req.body.studentList,
