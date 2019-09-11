@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
+const uploadCloud = require('../config/cloudinary.js');
 const bcrypt = require('bcryptjs');
 
 router.get('/students/create', (req, res, next) => {
@@ -46,7 +47,7 @@ router.post('/students/create', (req, res, next) => {
 
 router.get('/students', (req, res, next) => {
   User
-      .find({role: 'STUDENT'})
+      .find({role: 'STUDENT'},null,{sort:{name:1}})
       .then(students => {
         res.render('students-views/students', {students})
       })

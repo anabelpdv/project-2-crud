@@ -9,7 +9,6 @@ router.get('/instructors/create', (req, res, next) => {
   res.render('instructors-views/instructors-create')
 })
 
-
 router.post('/instructors/create', (req, res, next) => {
   let username = req.body.username;
   let pword = req.body.password;
@@ -46,36 +45,13 @@ router.post('/instructors/create', (req, res, next) => {
 
 })
 
-// router.post('/instructors/create', (req, res, next) => {
-
-//   // Instructor
-//   //           .create(req.body)
-//   //           .then(res.redirect('/instructors'))
-//   //           .catch(err => next(err))
-    
-//   // })
-//   User.create({
-//     name: req.body.name,
-//     etc,
-//     role: 'INSTRUCTOR'
-//   })
-
 router.get('/instructors', (req, res, next) => {
   User
-    .find({role:'INSTRUCTOR'})
+    .find({role: 'INSTRUCTOR'},null,{sort:{name:1}})
     .then(instructors => res.render('instructors-views/instructors', {instructors}))
     .catch(err => console.log("Error retrieving course", err))
   
 })
 
-
-// router.get('/instructor/profile/:id', (req, res, next) => {
-//   let instructorId = req.params.id;
-//   Course
-//   .find({instructor: instructorId})
-//   .populate('studentList')
-//   .then(courses => res.render('instructors-views/instructor-profile', {courses,instructorId}))
-//   .catch(err => console.log('Error while retrieving courses',err))
-// })
 
 module.exports = router;

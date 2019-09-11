@@ -8,7 +8,6 @@ body{
 .navbar{
   color:white;
   background-color:#1A1A1A;
-  /* background-color:#212121; */
 }
 
 #login-btn{
@@ -38,6 +37,8 @@ header{
   display: block;
   margin:0 auto;
 }
+
+
 /*************************** For courses-preview view ***************************/
 
 .course-wrapper{
@@ -55,8 +56,17 @@ header{
 .card-body{
   background: linear-gradient(to bottom, #323232 0%, #3F3F3F 40%, #1A1A1A 150%), linear-gradient(to top, rgba(255,255,255,0.40) 0%, rgba(0,0,0,0.25) 200%);
   background-blend-mode: multiply;
-  /* background-color:#aaa; */
 }
+
+
+.card-body > a, .card > a{
+  color:#aaa;
+}
+
+.card > a :hover{
+  color:white;
+}
+
 #edit-link{
   position:absolute;
   right:0;
@@ -69,15 +79,23 @@ header{
 
 /******************************* course-create *********************************/
 .course-create{
-
   width:50%;
   margin: 0 auto;
+}
+
+#course-create-form{
+  color:#666;
 }
 
 #course-delete-form button{
   font-size: 2em;
   color:#1A1A1A;
   margin-left:94%;
+}
+#course-create-form label {
+  color: #666;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 #course-delete-form button:hover{
@@ -117,7 +135,6 @@ header{
 #login-form  button {
   background: #1A1A1A;
   color: #fff;
-  cursor: pointer;
   display: inline-block;
   font-size: 14px;
   padding: 8px 16px;
@@ -137,6 +154,71 @@ header{
   color:#aaa;
   transition: .3s ease background;
 }
-
-
 /****************************************************************************/
+
+/********************************* instructors/students views **********************************/
+.record-wrapper{
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.record{
+  position:relative;
+  display:flex;
+  color:white;
+  background-color:#1A1A1A;
+  width: 350px;
+  padding:10px;
+  margin:5px;
+  text-align: center;
+  justify-content: space-between;
+}
+
+.record-buttton-wrapper{
+  display:flex;
+}
+
+.record-button{
+  background-color: transparent;
+  border:none;
+  color:white;
+}
+
+#record-name{
+  margin:0;
+}
+/***********************************************************************************************/
+
+
+/********************************* add instructor/student views **********************************/
+
+#create-student-form{
+  margin: 30px auto;
+  width: 350px;
+}
+
+
+#create-student-form button {
+  background: #1A1A1A;
+  color: #fff;
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+  border: 1px solid  #1A1A1A;
+  width: 100%;
+}
+
+#create-student-form label {
+  color: #666;
+  margin-bottom: 10px;
+  text-align: center;
+  width: 100%;
+}
+
+#create-student-form button:hover {
+  color:#aaa;
+  transition: .3s ease background;
+}
+/***********************************************************************************************/

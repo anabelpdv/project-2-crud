@@ -4,9 +4,19 @@
     </div>
   </header>
 
-<ul>
-  {{#each students}}
-  <a href="/student/profile/{{this.id}}"><li>{{this.name}}</li></a>
 
-  {{/each}}
-</ul>
+<div class="record-wrapper">
+  {{#each students}}
+    <div class="record">
+          <h6 id="record-name">{{this.name}} {{this.lastName}} </h6> 
+      <div class="record-buttton-wrapper">
+            <form action="" method="post">
+            <button class="record-button"><i class="far fa-edit"></i></button>
+            </form>
+            <form action="" method="post">
+            <button class="record-button"><i class="fas fa-trash-alt"></i></button>
+            </form>
+      </div>
+    </div>
+    {{/each}}
+</div>
