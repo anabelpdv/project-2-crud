@@ -222,3 +222,20 @@ header{
   transition: .3s ease background;
 }
 /***********************************************************************************************/
+
+
+/********************************* course-details/intro **********************************/
+
+.service-box{
+  font-size: 1.6em;
+  text-align: center;
+  border: 2px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 10px 0 #aaa;
+  margin: 50px 5% 0 5%;
+  padding: 20px;
+  width: 70%; 
+  margin:0 auto;
+}
+
+/***********************************************************************************************/

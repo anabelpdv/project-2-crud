@@ -4,5 +4,14 @@
     </div>
   </header>
 
+<div class="service-box">
+    <h1>{{course.term}}</h1>
+    <h1>{{course.startDate}} - {{course.endDate}}</h1>
+    <h1>{{course.startTime}} - {{course.endTime}}</h1>
+    {{#each course.days}}
+      {{this}}
+    {{/each}}
+</div>
 
-  <h1>{{course.startDate}}</h1>
+
+  
