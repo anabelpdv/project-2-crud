@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
+const uploadCloud = require('../config/cloudinary.js');
 const Course = require('../models/Course');
 const bcrypt = require('bcryptjs');
 
@@ -9,7 +10,7 @@ router.get('/instructors/create', (req, res, next) => {
   res.render('instructors-views/instructors-create')
 })
 
-router.post('/instructors/create', (req, res, next) => {
+router.post('/instructors/create', uploadCloud.single('photo'), (req, res, next) => {
   let username = req.body.username;
   let pword = req.body.password;
 
@@ -30,11 +31,17 @@ router.post('/instructors/create', (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);
   const hashedPassword = bcrypt.hashSync(pword, salt);
 
+  let photo = '/images/default-image.png';
+  if(req.file){
+    photo =  req.file.url;
+  }
+
   const newInstructor = {
     name : req.body.name,
     lastName : req.body.lastName,
     username : username,
     password : hashedPassword,
+    photo: photo,
     role : 'INSTRUCTOR'
   }
   User
