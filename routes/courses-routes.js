@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
 const Course = require('../models/Course');
+const Assignment = require('../models/Assignment');
 const uploadCloud = require('../config/cloudinary.js');
 
 router.get('/courses', (req, res, next) => {
@@ -28,8 +29,9 @@ router.get('/course/details/:id', (req, res, next) => {
 })
 
 router.get('/course/details/:id/page/:code', (req, res, next) => {
+  let courseId = req.params.id;
   Course
-    .findById(req.params.id)
+    .findById(courseId)
     .then(course => {
         switch(req.params.code){
           case '0':
@@ -45,7 +47,12 @@ router.get('/course/details/:id/page/:code', (req, res, next) => {
               res.render('courses-views/modules', {course})
               break; 
           case '4':
-              res.render('courses-views/assignments', {course})
+              Assignment
+                        .find({course:courseId})
+                        .then(assignments => {
+                          res.render('courses-views/assignments', {course, assignments})
+                        })
+                        .catch(err => next(err))
               break; 
           case '5':
               res.render('courses-views/articles', {course})

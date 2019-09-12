@@ -6,7 +6,6 @@ const assigmentSchema = new Schema({
   title : String,
   description: String,
   course: {type: Schema.Types.ObjectId, ref: 'Course' },
-  submissions:[{type:Schema.Types.ObjectId, ref:'Upload'}],
 });
 
 const Assignment = mongoose.model('Assignment', assigmentSchema);

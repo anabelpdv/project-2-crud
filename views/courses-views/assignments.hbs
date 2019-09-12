@@ -3,3 +3,26 @@
       <h1 class="display-4 header-text">Assignments</h1>
     </div>
   </header>
+<p>---------------------------------------------------------------</p>
+<h1>Assignment Create</h1>
+  <form action="/assignments/create" method='post'>
+    <div class="form-group">
+          <label for="title">Title</label>
+          <input type="text" class="form-control" name="title" id="title">
+    </div>
+    <div class="form-group">
+          <label for="description">Description</label>
+          <input type="text" class="form-control" name="description" id="description">
+    </div>
+
+    <input type="hidden" name="course" value={{course._id}} id="">
+    <button>Add</button>
+  </form>
+
+<p>---------------------------------------------------------------</p>
+
+  <ul>
+    {{#each assignments}}
+      <li><a href="/assignment/details/{{this._id}}/course/{{course._id}}">{{this.title}}</a></li>
+    {{/each}}
+  </ul>

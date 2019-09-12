@@ -113,8 +113,10 @@ app.use((req, res, next) => {
 
 app.use('/', require('./routes/index'));
 app.use('/',require('./routes/students-routes'))
-app.use('/',require('./routes/courses-routes'))
 app.use('/',require('./routes/instructors-routes'))
+app.use('/',require('./routes/courses-routes'))
+app.use('/',require('./routes/assignments-routes'))
+app.use('/',require('./routes/uploads-routes'))
 app.use('/',require('./routes/users-routes'))
 app.use('/',require('./routes/courses-api'))
 
