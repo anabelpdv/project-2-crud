@@ -1,10 +1,7 @@
 <header class='bg-light'>
     <div class="container">
-      <h1 class="display-4 header-text">Profile</h1>
+      <h1 class="display-4 header-text">Dashboard</h1>
     </div>
-
-<h3>{{currentUser.name}} {{currentUser.lastName}}</h3>
-<h3>Role:{{currentUser.role}}</h3>
   </header>
 
 
@@ -16,9 +13,9 @@
     {{/if}}
     <img src={{this.previewImage}} class="card-img-top" alt="preview-image">
     <div class="card-body">
-    <a href="/course/details/{{this.id}}" class="">
-      <h5 class="card-title">{{this.code}}</h5>
-      <p class="card-text">{{this.name}}</p>
+      <a href="/course/details/{{this.id}}" class="">
+        <h5 class="card-title">{{this.code}}</h5>
+        <p class="card-text">{{this.name}}</p>
         <p>{{this.term}}</p>  
       </a>
     </div>

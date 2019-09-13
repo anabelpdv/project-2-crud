@@ -3,26 +3,29 @@
       <h1 class="display-4 header-text">Assignments</h1>
     </div>
   </header>
-<p>---------------------------------------------------------------</p>
-<h1>Assignment Create</h1>
-  <form action="/assignments/create" method='post'>
-    <div class="form-group">
-          <label for="title">Title</label>
-          <input type="text" class="form-control" name="title" id="title">
-    </div>
-    <div class="form-group">
-          <label for="description">Description</label>
-          <input type="text" class="form-control" name="description" id="description">
-    </div>
+{{#if isInstructor}}
+  <div class="assignment-create ">
+  <h1 id="create-assignment">Create Assignment</h1>
+    <form id="assignment-create-form"action="/assignments/create" method='post'>
+      <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" name="title" id="title">
+      </div>
+      <div class="form-group">
+            <label for="description">Directions</label>
+            <input type="text" class="form-control" name="description" id="description">
+      </div>
 
-    <input type="hidden" name="course" value={{course._id}} id="">
-    <button>Add</button>
-  </form>
+      <input type="hidden" name="course" value={{course._id}} id="">
+      <button class="btn">Add</button>
+    </form>
+  </div>
+{{/if}}
 
-<p>---------------------------------------------------------------</p>
-
-  <ul>
+<div class="assignment-list">
     {{#each assignments}}
-      <li><a href="/assignment/details/{{this._id}}/course/{{course._id}}">{{this.title}}</a></li>
+      <p><a href="/assignment/details/{{this._id}}/course/{{course._id}}">{{this.title}}</a></p>
     {{/each}}
-  </ul>
+</div>
+
+  

@@ -97,14 +97,23 @@ app.use(passport.session());
 
 app.use((req, res, next) => {
   let isAdmin = false;
+  let isInstructor = false;
+  let isStudent = false;
+  
   res.locals.currentUser = req.user;
   if(req.user){
     if(req.user.role == 'ADMIN'){
       isAdmin = true;
+    }else if (req.user.role == 'INSTRUCTOR'){
+      isInstructor = true;
+    }else{
+      isStudent = true;
     }
   }
 
   res.locals.isAdmin = isAdmin; 
+  res.locals.isInstructor = isInstructor; 
+  res.locals.isStudent = isStudent; 
   res.locals.errorMessage = req.flash('error');
   res.locals.successMessage = req.flash('success');
   next();

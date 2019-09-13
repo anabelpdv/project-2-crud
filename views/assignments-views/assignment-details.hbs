@@ -1,25 +1,32 @@
-<h1>Assignment details</h1>  
-<h2>{{theAssignment.title}}</h2>
-<p>{{theAssignment.description}}</p>
+<header class='bg-light'>
+  <div class="container">
+    <h1 class="display-4 header-text">{{theAssignment.title}}</h1>
+  </div>
+</header>
 
-<h1>Assignment Submission</h1>
+<div class="container">
+  <h3>Directions:</h3>
+  
+  <p class="lead">{{theAssignment.description}}</p>
   <form action="/uploads/create" method='post' enctype="multipart/form-data">
-    <input type="hidden" name="assignment" value="{{theAssignment._id}}"id="">
-    <input type="hidden" name="author" value="{{currentUser._id}}"id="">
-    <input type="hidden" name="course" value="{{courseId}}" id="">
-    <div class="form-group">
-        <label for="documentPath">Upload Assignment</label>
-        <input type="file" class="form-control-file" name="documentPath" id="documentPath" required>
-    </div>
-    <button>Submit Assignment</button>
-  </form>
+  <input type="hidden" name="assignment" value="{{theAssignment._id}}"id="">
+  <input type="hidden" name="author" value="{{currentUser._id}}"id="">
+  <input type="hidden" name="course" value="{{courseId}}" id="">
+  <div class="form-group">
+      <label for="documentPath">Upload Assignment</label>
+      <input type="file" class="form-control-file" name="documentPath" id="documentPath" required>
+  </div>
+  <button>Submit</button>
+</form>
 
-<p>---------------------------------------------------------------</p>
+  <hr>
+  <div class="submission-list">
+      <h2 id="submissions">All Submissions</h2>
+      {{#each uploads}}
+      <p><a href={{this.documentPath}}><i class="fas fa-cloud-upload-alt"></i> {{this.author.name}}  {{this.author.lastName}}</a></p>
+      {{else}}
+      <h1>There are no submissions yet</h1>
+      {{/each}}
+  </div>
 
-  <ul>
-    {{#each uploads}}
-    <li><a href={{this.documentPath}}>{{this.author.name}}</a></li>
-    {{else}}
-    <h1>There are no submissions yet</h1>
-    {{/each}}
-  </ul>
+  </div>

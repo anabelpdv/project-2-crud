@@ -46,6 +46,9 @@ header{
   display:flex;
   justify-content: left;
   flex-wrap: wrap;
+  overflow: scroll; 
+  height:600px;
+  
 }
 
 .card{
@@ -85,13 +88,16 @@ header{
 
 #course-create-form{
   color:#666;
+  height:550px;
+  overflow: scroll;
 }
 
 #course-delete-form button{
   font-size: 2em;
-  color:#1A1A1A;
+  color:#1A1A1A; 
   margin-left:94%;
 }
+
 #course-create-form label {
   color: #666;
   margin-bottom: 10px;
@@ -111,6 +117,7 @@ header{
   padding: 8px 16px;
   text-transform: uppercase;
 }
+
 #course-create-form button:hover {
   color:#aaa;
   transition: .3s ease background;
@@ -118,7 +125,47 @@ header{
 
 /*******************************************************************************/
 
+/******************************* assignment-create/upload *********************************/
+#create-assignment{
+  text-align: center;
+}
+.assignment-create,.assignment-list,.assignment-upload{
+  width:50%;
+  margin: 0 auto;
+  margin-bottom:30px;
+}
 
+.assignment-list , .submission-list {
+  text-align: center;
+  width:400px;
+  margin:0 auto;
+}
+
+.assignment-list  > p > a, .submission-list > p > a{
+  font-size: 2em;
+  text-decoration: underline;
+  color:#1A1A1A;
+}
+
+#assignment-create-form button{
+  width:100%;
+  background: #1A1A1A;
+  color: #fff;
+  font-size: 14px;
+  padding: 8px 16px;
+  text-transform: uppercase;
+}
+
+#assignment-create-form button:hover {
+  color:#aaa;
+  transition: .3s ease background;
+}
+
+#submissions{
+  text-align: center;
+  margin-bottom: 20px;
+}
+/*******************************************************************************/
 
 /******************************* login **********************************/
 
@@ -127,6 +174,7 @@ header{
   width: 350px;
   margin-top: 30vh;;
 }
+
 #login-form  h1{
   text-align: center;
   margin-bottom: 20px;
@@ -161,7 +209,7 @@ header{
   display:flex;
   flex-direction: column;
   flex-wrap: wrap;
-  height:700px;
+  height:550px;
   width:90%;
   margin:0 auto;
   align-items: center;
@@ -202,7 +250,6 @@ header{
   margin: 30px auto;
   width: 350px;
 }
-
 
 #create-student-form button {
   background: #1A1A1A;
