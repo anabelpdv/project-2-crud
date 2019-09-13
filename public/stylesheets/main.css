@@ -160,7 +160,12 @@ header{
 .record-wrapper{
   display:flex;
   flex-direction: column;
+  flex-wrap: wrap;
+  height:700px;
+  width:90%;
+  margin:0 auto;
   align-items: center;
+  overflow:scroll;
 }
 
 .record{
