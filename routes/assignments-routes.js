@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const Assignment = require('../models/Assignment');
+const Utils = require('../public/javascripts/utils');
 const Upload = require('../models/Upload');
 
-router.get('/assignment/details/:id/course/:courseId',(req, res, next) => {
+router.get('/assignment/details/:id/course/:courseId',Utils.ensureAuthenticated,(req, res, next) => {
   let courseId = req.params.courseId;
   let currentAssignment = req.params.id;
   Assignment
@@ -13,6 +14,11 @@ router.get('/assignment/details/:id/course/:courseId',(req, res, next) => {
                 .find({assignment: `${currentAssignment}`})
                 .populate('author')
                 .then(uploads => {
+                  uploads.forEach(upload => {
+                    if(req.user._id.equals(upload.author._id)){
+                      upload.isAuthor = true;
+                    }
+                  })
                   res.render('assignments-views/assignment-details',{theAssignment,courseId,uploads})
                 })
                 .catch(err => next(err))

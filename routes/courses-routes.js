@@ -2,24 +2,21 @@ const express = require("express");
 const router = express.Router();
 const User = require('../models/User');
 const Course = require('../models/Course');
+const Utils = require('../public/javascripts/utils');
 const Assignment = require('../models/Assignment');
 const uploadCloud = require('../config/cloudinary.js');
 
-router.get('/courses', (req, res, next) => {
-  let isAdmin = false;
-  if(req.user.role == 'ADMIN'){
-    isAdmin = true;
-  }
-  Course
-    .find()
-    .populate('instructor')
-    .populate('studentList')
-    .then(courses => res.render('courses-views/courses-preview', {courses, isAdmin:isAdmin}))
-    .catch(err => console.log("Error retrieving course", err))
+// router.get('/courses', Utils.ensureAuthenticated,(req, res, next) => {
+//   Course
+//     .find()
+//     .populate('instructor')
+//     .populate('studentList')
+//     .then(courses => res.render('courses-views/courses-preview', {courses}))
+//     .catch(err => console.log("Error retrieving course", err))
   
-})
+// })
 
-router.get('/course/details/:id', (req, res, next) => {
+router.get('/course/details/:id',Utils.ensureAuthenticated, (req, res, next) => {
   Course
     .findById(req.params.id)
     .then(course => {
@@ -28,7 +25,7 @@ router.get('/course/details/:id', (req, res, next) => {
     .catch(err => console.log("Error retrieving course information", err))
 })
 
-router.get('/course/details/:id/page/:code', (req, res, next) => {
+router.get('/course/details/:id/page/:code',Utils.ensureAuthenticated, (req, res, next) => {
   let courseId = req.params.id;
   Course
     .findById(courseId)
@@ -62,17 +59,13 @@ router.get('/course/details/:id/page/:code', (req, res, next) => {
               break;  
         }
     })
-    .catch(err => console.log("Error retrieving course information", err))
+    .catch(err => next (err))
 })
 
 const schoolTerms = ['Spring','Fall','Summer'];
 const weekDays = ['Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday']; 
 
-router.get('/courses/create',(req, res, next) => {
-  if(req.user.role != 'ADMIN'){
-    req.flash('error', 'Need admin permition to create course')
-    res.redirect('/')
-  }
+router.get('/courses/create',Utils.checkRoles('ADMIN'),(req, res, next) => {
   User
       .find({role : 'INSTRUCTOR'})
       .then(instructors => {
@@ -117,7 +110,7 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
         .catch(err => next(err));
   })
 
-  router.get('/courses/edit/:id',(req, res, next) => {
+  router.get('/courses/edit/:id',Utils.checkRoles('ADMIN'),(req, res, next) => {
     Course
           .findById(req.params.id)
           .then(course  => {

@@ -9,6 +9,16 @@
   <link rel="stylesheet" href="/stylesheets/main.css" />
 </head>
 <body>
+    {{#if errorMessage}}
+    <div style="color: red; font-size:1.2em;">
+        {{errorMessage}}
+    </div>
+    {{/if}}
+    {{#if successMessage}}
+      <div style="color: green; font-size:1.2em;">
+      {{successMessage}}
+      </div>
+    {{/if}}
 {{{body}}}
 </body>
 </html>

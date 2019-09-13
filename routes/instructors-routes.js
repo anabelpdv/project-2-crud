@@ -3,10 +3,15 @@ const router = express.Router();
 const User = require('../models/User');
 const uploadCloud = require('../config/cloudinary.js');
 const Course = require('../models/Course');
+const Utils = require('../public/javascripts/utils');
+
 const bcrypt = require('bcryptjs');
 
 
-router.get('/instructors/create', (req, res, next) => {
+router.get('/instructors/create',Utils.checkRoles('ADMIN'), (req, res, next) => {
+  if(!req.user){
+    res.redirect('/login')
+  }
   res.render('instructors-views/instructors-create')
 })
 
@@ -52,7 +57,7 @@ router.post('/instructors/create', uploadCloud.single('photo'), (req, res, next)
 
 })
 
-router.get('/instructors', (req, res, next) => {
+router.get('/instructors',Utils.checkRoles('ADMIN'), (req, res, next) => {
   User
     .find({role: 'INSTRUCTOR'},null,{sort:{name:1}})
     .then(instructors => res.render('instructors-views/instructors', {instructors}))

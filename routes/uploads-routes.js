@@ -6,7 +6,6 @@ const uploadCloud = require('../config/cloudinary.js');
 
 
 router.post('/uploads/create', uploadCloud.single('documentPath'),(req, res, next) => {
-
   let upload = {
     assignment: req.body.assignment,
     course : req.body.course,

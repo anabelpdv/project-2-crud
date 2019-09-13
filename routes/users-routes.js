@@ -3,6 +3,7 @@ const express = require('express');
 const router  = express.Router();
 const User    = require('../models/User');
 const Course    = require('../models/Course');
+const Utils = require('../public/javascripts/utils');
 const bcrypt = require('bcryptjs');
 const passport = require("passport");
 
@@ -22,21 +23,15 @@ router.post('/logout', (req, res, next)=>{
   res.redirect('/login')
 })
 
-router.get('/profile', (req, res, next) => {
+router.get('/profile', Utils.ensureAuthenticated, (req, res, next) => {
   let userId = req.user.id;
-  let isAdmin = false;
-
-  if(req.user.role == 'ADMIN'){
-    isAdmin = true;
-  }
-
   if(req.user.role == 'INSTRUCTOR'){
     Course
     .find({instructor:userId})
     .populate('studentList')
     .populate('instructor')
     .then(courses => {
-      res.render('users-views/profile',{courses, isAdmin})
+      res.render('users-views/profile',{courses})
     })
     .catch(err => console.log('Error while retrieving courses',err))
   } else if(req.user.role == 'STUDENT'){
@@ -44,7 +39,7 @@ router.get('/profile', (req, res, next) => {
     .find({studentList: {$all: [userId]}})
     .populate('instructor')
     .then(courses => {
-      res.render('users-views/profile',{courses, isAdmin})
+      res.render('users-views/profile',{courses})
     })
     .catch(err => console.log('Error while retrieving courses',err))
   }else{
@@ -53,7 +48,7 @@ router.get('/profile', (req, res, next) => {
     .populate('studentList')
     .populate('instructor')
     .then(courses => {
-      res.render('courses-views/courses-preview',{courses, isAdmin})
+      res.render('courses-views/courses-preview',{courses})
     })
   }
 })

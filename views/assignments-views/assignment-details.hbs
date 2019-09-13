@@ -6,7 +6,7 @@
 
 <div class="container">
   <h3>Directions:</h3>
-  
+
   <p class="lead">{{theAssignment.description}}</p>
   <form action="/uploads/create" method='post' enctype="multipart/form-data">
   <input type="hidden" name="assignment" value="{{theAssignment._id}}"id="">
@@ -22,11 +22,18 @@
   <hr>
   <div class="submission-list">
       <h2 id="submissions">All Submissions</h2>
+      <hr>
+      {{#if isInstructor}}
       {{#each uploads}}
       <p><a href={{this.documentPath}}><i class="fas fa-cloud-upload-alt"></i> {{this.author.name}}  {{this.author.lastName}}</a></p>
-      {{else}}
-      <h1>There are no submissions yet</h1>
       {{/each}}
+        {{else}} 
+                {{#each uploads}}
+                {{#if this.isAuthor}}
+                <p><a href={{this.documentPath}}><i class="fas fa-cloud-upload-alt"></i> {{this.author.name}}  {{this.author.lastName}}</a></p>
+                {{/if}}
+                {{/each}}
+      {{/if}}
   </div>
 
   </div>
