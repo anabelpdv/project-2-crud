@@ -104,8 +104,7 @@ router.post('/courses/create',uploadCloud.single('syllabus'),(req, res, next) =>
   Course
         .create(newCourse)  
         .then(course => {
-          console.log('Succes! new course created: ',course)
-          res.redirect('/')
+          res.redirect('/courses')
         })
         .catch(err => next(err));
   })

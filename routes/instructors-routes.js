@@ -20,16 +20,15 @@ router.post('/instructors/create', uploadCloud.single('photo'), (req, res, next)
   let pword = req.body.password;
 
   if(!username || !pword){
-    res.redirect('/')
     req.flash('error', 'please provide both username and password it seems you have forgotton one or both')
+    res.redirect('/instructors/create')
   }
-
   User
       .findOne({ username })
       .then(user => {
           if (user !== null) {
           req.flash('error', 'The username already exists')
-          res.redirect('/signup')
+          res.redirect('/instructors/create')
     }
   })
 
@@ -52,7 +51,7 @@ router.post('/instructors/create', uploadCloud.single('photo'), (req, res, next)
   User
       .create(newInstructor)
       .then(newUser => {
-        res.redirect('/')
+        res.redirect('/instructors')
       })
 
 })
