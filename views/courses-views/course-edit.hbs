@@ -1,11 +1,11 @@
 <script src="/javascripts/courses.js"></script>
 <header class='bg-light'>
 <div class="container">
-    <h1 class="display-4 header-text">Edit Course</h1>
+    <h1 class="header-text">Edit Course</h1>
 </div>
 </header>
 
-<div class="course-create">
+<div class="course-edit">
 <div class="form-group">
     <form id="course-delete-form" action="/courses/delete/{{course._id}}" method="post">
     <button class="btn"><i class="fas fa-trash-alt"></i></button>
@@ -86,7 +86,7 @@
 
 <div class="form-group">
 <label for="studentList">Students</label>
-    <div>
+    <div class="">
     {{#each students}}
         {{#if this.isInCourse}}
             <div>

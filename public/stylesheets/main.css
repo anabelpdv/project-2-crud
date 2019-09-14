@@ -22,13 +22,17 @@ body{
 }
 
 header{
-  padding:10px;
-  height:150px;
+  height:100px;
   margin-bottom:30px;
+}
+header > div > h1{
+
+
 }
 
 .header-text{
-  line-height: 120px;
+  font-size:3em;
+  line-height: 100px;
 }
 
 #syllabus-frame{
@@ -46,9 +50,6 @@ header{
   display:flex;
   justify-content: left;
   flex-wrap: wrap;
-  overflow: scroll; 
-  height:600px;
-  
 }
 
 .card{
@@ -81,7 +82,7 @@ header{
 
 
 /******************************* course-create *********************************/
-.course-create{
+.course-create,.course-edit,#intro-edit-form{
   width:50%;
   margin: 0 auto;
 }
@@ -121,6 +122,10 @@ header{
 #course-create-form button:hover {
   color:#aaa;
   transition: .3s ease background;
+}
+.student-scroll{
+  height:200px;
+  overflow: scroll;
 }
 
 /*******************************************************************************/
@@ -251,7 +256,7 @@ header{
   width: 350px;
 }
 
-#create-student-form button {
+#create-student-form button,#intro-edit-form button  {
   background: #1A1A1A;
   color: #fff;
   display: inline-block;
@@ -269,7 +274,7 @@ header{
   width: 100%;
 }
 
-#create-student-form button:hover {
+#create-student-form button:hover , #intro-edit-form button:hover{
   color:#aaa;
   transition: .3s ease background;
 }

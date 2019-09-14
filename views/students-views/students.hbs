@@ -1,6 +1,6 @@
   <header class='bg-light'>
     <div class="container">
-      <h1 class="display-4 header-text">Student List</h1>
+      <h1 class="header-text">Student List</h1>
     </div>
   </header>
 
@@ -10,10 +10,10 @@
     <div class="record">
           <h6 id="record-name">{{this.name}} {{this.lastName}} </h6> 
       <div class="record-buttton-wrapper">
-            <form action="" method="post">
-            <button class="record-button"><i class="far fa-edit"></i></button>
-            </form>
-            <form action="" method="post">
+
+            <button onclick="window.location.href = '/students/edit/{{this._id}}';"class="record-button"><i class="far fa-edit"></i></button>
+
+            <form action="/students/delete/{{this._id}}" method="post">
             <button class="record-button"><i class="fas fa-trash-alt"></i></button>
             </form>
       </div>

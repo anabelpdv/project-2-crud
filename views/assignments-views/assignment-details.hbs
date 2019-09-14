@@ -1,9 +1,9 @@
 <header class='bg-light'>
   <div class="container">
-    <h1 class="display-4 header-text">{{theAssignment.title}}</h1>
+    <h1 class="header-text">{{theAssignment.title}}</h1>
   </div>
 </header>
-
+{{#if isStudent}}
 <div class="container">
   <h3>Directions:</h3>
 
@@ -18,7 +18,7 @@
   </div>
   <button>Submit</button>
 </form>
-
+{{/if}}
   <hr>
   <div class="submission-list">
       <h2 id="submissions">All Submissions</h2>

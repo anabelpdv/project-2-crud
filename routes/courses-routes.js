@@ -6,15 +6,15 @@ const Utils = require('../public/javascripts/utils');
 const Assignment = require('../models/Assignment');
 const uploadCloud = require('../config/cloudinary.js');
 
-// router.get('/courses', Utils.ensureAuthenticated,(req, res, next) => {
-//   Course
-//     .find()
-//     .populate('instructor')
-//     .populate('studentList')
-//     .then(courses => res.render('courses-views/courses-preview', {courses}))
-//     .catch(err => console.log("Error retrieving course", err))
+router.get('/courses', Utils.ensureAuthenticated,(req, res, next) => {
+  Course
+    .find()
+    .populate('instructor')
+    .populate('studentList')
+    .then(courses => res.render('courses-views/courses-preview', {courses}))
+    .catch(err => console.log("Error retrieving course", err))
   
-// })
+})
 
 router.get('/course/details/:id',Utils.ensureAuthenticated, (req, res, next) => {
   Course

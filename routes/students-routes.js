@@ -23,7 +23,7 @@ router.post('/students/create', uploadCloud.single('photo'), (req, res, next) =>
       .then(user => {
           if (user !== null) {
           req.flash('error', 'The username already exists')
-          res.redirect('/signup')
+          res.redirect('/students/create')
     }
   })
 
@@ -46,7 +46,7 @@ router.post('/students/create', uploadCloud.single('photo'), (req, res, next) =>
   User
       .create(newStudent)
       .then(newStudent => {
-        res.redirect('/')
+        res.redirect('/students')
       })
 
 })
@@ -58,7 +58,35 @@ router.get('/students',Utils.checkRoles('ADMIN'), (req, res, next) => {
       .then(students => {
         res.render('students-views/students', {students})
       })
-      .catch(err => console.log("Error retriving student", err)) 
+      .catch(err => next(err)) 
+})
+
+router.get('/students/edit/:id',Utils.checkRoles('ADMIN'), (req, res, next) => {
+  User
+      .findById(req.params.id)
+      .then(student => {
+        res.render('students-views/student-edit',{student})
+      })
+      .catch(err=>next(err))
+})
+
+
+router.post('/students/edit/:id', (req, res, next) => {
+  User
+      .findByIdAndUpdate(req.params.id,req.body)
+      .then(() => {
+        res.redirect('/students')
+      })
+      .catch(err=>next(err))
+})
+
+router.post('/students/delete/:id', (req, res, next) => {
+  User
+      .findByIdAndRemove(req.params.id)
+      .then(students => {
+        res.redirect('/students')
+      })
+      .catch(err => next(err)) 
 })
 
 module.exports = router;
