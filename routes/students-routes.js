@@ -14,7 +14,7 @@ router.post('/students/create', uploadCloud.single('photo'), (req, res, next) =>
   let pword = req.body.password;
 
   if(!username || !pword){
-    req.flash('error', 'please provide both username and password it seems you have forgotton one or both')
+    req.flash('error', 'Please provide both username and password it seems you have forgotton one or both')
     res.redirect('/students/create')
   }
 

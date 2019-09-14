@@ -27,6 +27,7 @@ body{
 }
 #profile-image{
   margin-right:10px;
+  margin-left:10px;
 }
 
 header{
@@ -314,11 +315,12 @@ header{
 .landing-page{
   margin:0;
   height:90vh;
-  
+
 }
 
 .landing-page{
   display:flex;
+  flex-wrap: wrap;
 }
 
 .index-item{
@@ -350,4 +352,23 @@ strong{
 }
 
 
+.showWhenBig {
+  display: block;
+}
+
+.showWhenSmall {
+  display: none;
+}
+
 /***********************************************************************************************/
+
+@media only screen and (max-width: 768px) {
+  .showWhenBig {
+    display: none;
+}
+
+.showWhenSmall {
+    display: block;
+}
+
+}
