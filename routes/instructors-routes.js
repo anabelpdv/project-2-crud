@@ -12,7 +12,7 @@ router.get('/instructors/create',Utils.checkRoles('ADMIN'), (req, res, next) => 
   if(!req.user){
     res.redirect('/login')
   }
-  res.render('instructors-views/instructors-create')
+  res.render('instructors-views/instructor-create')
 })
 
 router.post('/instructors/create', uploadCloud.single('photo'), (req, res, next) => {
@@ -64,5 +64,31 @@ router.get('/instructors',Utils.checkRoles('ADMIN'), (req, res, next) => {
   
 })
 
+router.get('/instructor/edit/:id',Utils.checkRoles('ADMIN'), (req, res, next) => {
+  User
+      .findById(req.params.id)
+      .then(instructor => {
+        res.render('instructors-views/instructor-edit',{instructor})
+      })
+      .catch(err=>next(err))
+})
+
+router.post('/instructor/edit/:id', (req, res, next) => {
+  User
+      .findByIdAndUpdate(req.params.id,req.body)
+      .then(() => {
+        res.redirect('/instructors')
+      })
+      .catch(err=>next(err))
+})
+
+router.post('/instructors/delete/:id', (req, res, next) => {
+  User
+      .findByIdAndRemove(req.params.id)
+      .then(instructor => {
+        res.redirect('/instructors')
+      })
+      .catch(err => next(err)) 
+})
 
 module.exports = router;

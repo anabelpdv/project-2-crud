@@ -16,6 +16,7 @@ router.post('/uploads/create', uploadCloud.single('documentPath'),(req, res, nex
   Upload
         .create(upload)  
         .then(upload =>{
+          req.flash('success', 'File upload succesfull')
           res.redirect(`/course/details/${req.body.course}/page/4`)
         })
         .catch(err => next(err))
