@@ -4,7 +4,6 @@ const User = require('../models/User');
 const uploadCloud = require('../config/cloudinary.js');
 const Course = require('../models/Course');
 const Utils = require('../public/javascripts/utils');
-
 const bcrypt = require('bcryptjs');
 
 
@@ -53,6 +52,7 @@ router.post('/instructors/create', uploadCloud.single('photo'), (req, res, next)
       .then(newUser => {
         res.redirect('/instructors')
       })
+      .catch(err => next(err))
 
 })
 
@@ -60,7 +60,7 @@ router.get('/instructors',Utils.checkRoles('ADMIN'), (req, res, next) => {
   User
     .find({role: 'INSTRUCTOR'},null,{sort:{name:1}})
     .then(instructors => res.render('instructors-views/instructors', {instructors}))
-    .catch(err => console.log("Error retrieving course", err))
+    .catch(err => next(err))
   
 })
 

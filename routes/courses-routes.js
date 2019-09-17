@@ -12,7 +12,7 @@ router.get('/courses', Utils.ensureAuthenticated,(req, res, next) => {
     .populate('instructor')
     .populate('studentList')
     .then(courses => res.render('courses-views/courses-preview', {courses}))
-    .catch(err => console.log("Error retrieving course", err))
+    .catch(err => next(err))
   
 })
 
@@ -22,7 +22,7 @@ router.get('/course/details/:id',Utils.ensureAuthenticated, (req, res, next) => 
     .then(course => {
       res.render('courses-views/course-details', {course})
     })
-    .catch(err => console.log("Error retrieving course information", err))
+    .catch(err => next(err))
 })
 
 router.get('/course/details/:id/page/:code',Utils.ensureAuthenticated, (req, res, next) => {

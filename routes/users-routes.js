@@ -23,6 +23,7 @@ router.post('/logout', (req, res, next)=>{
   res.redirect('/login')
 })
 
+
 router.get('/profile', Utils.ensureAuthenticated, (req, res, next) => {
   let userId = req.user.id;
   if(req.user.role == 'INSTRUCTOR'){
@@ -33,7 +34,7 @@ router.get('/profile', Utils.ensureAuthenticated, (req, res, next) => {
     .then(courses => {
       res.render('users-views/profile',{courses})
     })
-    .catch(err => console.log('Error while retrieving courses',err))
+    .catch(err => next(err))
   } else if(req.user.role == 'STUDENT'){
     Course
     .find({studentList: {$all: [userId]}})
@@ -41,7 +42,7 @@ router.get('/profile', Utils.ensureAuthenticated, (req, res, next) => {
     .then(courses => {
       res.render('users-views/profile',{courses})
     })
-    .catch(err => console.log('Error while retrieving courses',err))
+    .catch(err => next(err))
   }else{
     Course
     .find()
@@ -50,6 +51,7 @@ router.get('/profile', Utils.ensureAuthenticated, (req, res, next) => {
     .then(courses => {
       res.render('courses-views/courses-preview',{courses})
     })
+    .catch(err => next(err))
   }
 })
 

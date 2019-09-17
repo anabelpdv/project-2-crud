@@ -49,6 +49,7 @@ router.post('/students/create', uploadCloud.single('photo'), (req, res, next) =>
         req.flash('success', 'Student succesfully added')
         res.redirect('/students')
       })
+      .catch(err => next(err))
 
 })
 
